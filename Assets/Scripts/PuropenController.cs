@@ -19,6 +19,8 @@ public class PuropenController : MonoBehaviour
     public bool Invincible { private get; set; }
     public bool WasSpawnedFromExit { private get; set; }
 
+    public Sprite[] pointsSprites;
+    public GameObject deathExplosionPrefab;
     public float raySize;
     public float speed = 1.5f;
     public int points;
@@ -154,6 +156,9 @@ public class PuropenController : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
 
+        GameObject deathExplosion = Instantiate(deathExplosionPrefab, transform.position, Quaternion.identity);
+        StartCoroutine(DestroyDeathExplosion(deathExplosion));
+
         gameManager.EnemiesRemaining--;
         playerOneController.Score += points;
 
@@ -165,4 +170,11 @@ public class PuropenController : MonoBehaviour
         Destroy(gameObject);
     }
 
+
+    private IEnumerator DestroyDeathExplosion(GameObject deathExplosion)
+    {
+        print(":D");
+        yield return new WaitForSeconds(0.35f);
+        Destroy(deathExplosion);
+    }
 }

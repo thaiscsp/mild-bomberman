@@ -208,6 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10da9ac8b30480d42b416e3ce2b60590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pointsSprites: []
+  deathExplosionPrefab: {fileID: 8761537062105196295, guid: a5364aa63af36c14b9fc216252869007, type: 3}
   raySize: 0.55
   speed: 1.5
   points: 100
