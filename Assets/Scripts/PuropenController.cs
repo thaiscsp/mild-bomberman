@@ -10,6 +10,7 @@ public class PuropenController : MonoBehaviour
     PlayerOneController playerOneController;
     Rigidbody2D rigidBody;
     SpriteRenderer spriteRenderer;
+    GameObject deathExplosion;
 
     Color originalColor;
     Vector2 direction = Vector2.down;
@@ -24,6 +25,11 @@ public class PuropenController : MonoBehaviour
     public float raySize;
     public float speed = 1.5f;
     public int points;
+
+    private void OnDisable()
+    {
+        Invoke("DestroyPuropen", 0.33f);
+    }
 
     private void Start()
     {
@@ -133,7 +139,7 @@ public class PuropenController : MonoBehaviour
             rigidBody.velocity = Vector2.zero;
 
             StartCoroutine(FlashOnDamage());
-            StartCoroutine(DestroyPuropen());
+            StartCoroutine(DisablePuropen());
         }
     }
 
@@ -144,7 +150,7 @@ public class PuropenController : MonoBehaviour
 
         for (int i = 0; i < flashCount; i++)
         {
-            spriteRenderer.color = Color.blue;
+            spriteRenderer.color = Color.gray;
             yield return new WaitForSeconds(flashTime);
 
             spriteRenderer.color = originalColor;
@@ -152,12 +158,11 @@ public class PuropenController : MonoBehaviour
         }
     }
 
-    private IEnumerator DestroyPuropen()
+    private IEnumerator DisablePuropen()
     {
         yield return new WaitForSeconds(1);
 
-        GameObject deathExplosion = Instantiate(deathExplosionPrefab, transform.position, Quaternion.identity);
-        StartCoroutine(DestroyDeathExplosion(deathExplosion));
+        deathExplosion = Instantiate(deathExplosionPrefab, transform.position, Quaternion.identity);
 
         gameManager.EnemiesRemaining--;
         playerOneController.Score += points;
@@ -167,14 +172,13 @@ public class PuropenController : MonoBehaviour
             gameManager.EnemySpawnedFromExit = false;
         }
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
 
-    private IEnumerator DestroyDeathExplosion(GameObject deathExplosion)
+    private void DestroyPuropen()
     {
-        print(":D");
-        yield return new WaitForSeconds(0.35f);
         Destroy(deathExplosion);
+        Destroy(gameObject);
     }
 }

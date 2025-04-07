@@ -21,7 +21,7 @@ public class PlayerOneController : MonoBehaviour
     public int Score { get; set; }
     public float speed = 3f;
     public int BombsRemaining { get; set; }
-    public int TotalBombs { get; set; } = 3;
+    public int TotalBombs { get; set; } = 1;
     bool canPlaceBomb = true;
     public GameObject bombPrefab;
     public Tilemap backgroundTilemap;
