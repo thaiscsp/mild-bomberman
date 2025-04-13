@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuElementsController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class MenuElementsController : MonoBehaviour
     [Header("Title")]
     public float xTarget; // Title Top: 7.09f, Title Bottom: 7.06f
     Vector2 target;
+    float moveTitleAt;
 
     [Header("Vehicle")]
     public Direction direction;
@@ -39,6 +41,7 @@ public class MenuElementsController : MonoBehaviour
                 break;
 
             case ElementType.Title:
+                moveTitleAt = Time.time + 5;
                 target = new(xTarget, transform.position.y);
                 break;
 
@@ -55,7 +58,7 @@ public class MenuElementsController : MonoBehaviour
             if (direction == Direction.Left) rigidBody.velocity = Vector2.left * speed;
             else rigidBody.velocity = Vector2.right * speed;
         }
-        else if (elementType == ElementType.Title && transform.position.x != xTarget)
+        else if (elementType == ElementType.Title && transform.position.x != xTarget && Time.time >= moveTitleAt)
         {
             transform.position = Vector2.MoveTowards(transform.position, target, speed * Time.deltaTime);
         }
@@ -65,10 +68,14 @@ public class MenuElementsController : MonoBehaviour
     {
         if (elementType == ElementType.Arrow && Input.anyKeyDown)
         {
-            if (Input.GetKeyDown(KeyCode.S)) currentIndex = (currentIndex + 1) % arrowPositions.Length;
-            else if (Input.GetKeyDown(KeyCode.W)) currentIndex = (currentIndex - 1 + arrowPositions.Length) % arrowPositions.Length;
-            print(currentIndex);
-            transform.position = arrowPositions[currentIndex].position;
+            if (currentIndex == 0 && Input.GetKeyDown(KeyCode.Z)) SceneManager.LoadScene("Stage 1-1");
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.S)) currentIndex = (currentIndex + 1) % arrowPositions.Length;
+                else if (Input.GetKeyDown(KeyCode.W)) currentIndex = (currentIndex - 1 + arrowPositions.Length) % arrowPositions.Length;
+
+                transform.position = arrowPositions[currentIndex].position;
+            }
         }
     }
 
