@@ -4,13 +4,9 @@ public class SFXManager : MonoBehaviour
 {
     private AudioSource audioSource;
     
-    public AudioClip bombExplodes;
-    public AudioClip bombermanDies;
-    public AudioClip enemyDies;
-    public AudioClip itemGet;
-    public AudioClip placeBomb;
-    public AudioClip stageClear;
-    public AudioClip walkingOne;
+    public AudioClip bombExplodes, bombermanDies, enemyDies,
+        itemGet, placeBomb, stageClear,
+        titleScreenCursor, titleScreenSelect, walkingOne;
 
     void Start()
     {
