@@ -4,8 +4,9 @@ using static UnityEngine.GraphicsBuffer;
 public class VehicleController : MonoBehaviour
 {
     Rigidbody2D rigidBody;
-    public Direction direction;
+
     public enum Direction { Left, Right };
+    public Direction direction;
     public float speed;
 
     void Start()
