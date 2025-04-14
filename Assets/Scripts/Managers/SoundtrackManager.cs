@@ -5,14 +5,14 @@ public class SoundtrackManager : MonoBehaviour
 {
     private AudioSource audioSource;
 
-    public AudioClip levelStart;
-    public AudioClip worldOne;
+    public AudioClip levelStart, stageOneIntro, stageOneLoop;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         StartCoroutine(PlayClip(levelStart));
-        StartCoroutine(PlayClip(worldOne, levelStart.length, true));
+        StartCoroutine(PlayClip(stageOneIntro, levelStart.length));
+        StartCoroutine(PlayClip(stageOneLoop, levelStart.length + stageOneIntro.length, true));
     }
 
     public IEnumerator PlayClip(AudioClip audioClip, float delay = 0, bool loop = false)
@@ -20,6 +20,7 @@ public class SoundtrackManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         audioSource.loop = loop;
-        audioSource.PlayOneShot(audioClip);
+        audioSource.clip = audioClip;
+        audioSource.Play();
     }
 }

@@ -3,8 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class ArrowController : MonoBehaviour
 {
+    CoverController coverController;
     SFXManager sfxManager;
     SpriteRenderer spriteRenderer;
+    public bool optionSelected { get; private set; }
     float enableAt;
     int currentIndex = 0;
 
@@ -12,6 +14,7 @@ public class ArrowController : MonoBehaviour
     
     void Start()
     {
+        coverController = FindFirstObjectByType<CoverController>();
         sfxManager = FindFirstObjectByType<SFXManager>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.enabled = false;
@@ -38,8 +41,9 @@ public class ArrowController : MonoBehaviour
     {
         if (currentIndex == 0 && Input.GetKeyDown(KeyCode.Z))
         {
+            optionSelected = true;
             sfxManager.PlayClip(sfxManager.titleScreenSelect);
-            Invoke("LoadStageScene", sfxManager.titleScreenSelect.length);
+            Invoke("LoadWorldMapScene", sfxManager.titleScreenSelect.length);
         }
         else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.W))
         {
@@ -52,9 +56,9 @@ public class ArrowController : MonoBehaviour
         }
     }
 
-    private void LoadStageScene()
+    private void LoadWorldMapScene()
     {
-        SceneManager.LoadScene("Stage 1-1");
+        SceneManager.LoadScene("World Map");
     }
 
 }

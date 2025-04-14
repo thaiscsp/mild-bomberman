@@ -31,8 +31,8 @@ public class GameManager : MonoBehaviour
     PlayerOneController playerOneController;
     TilemapController tilemapController;
 
-    Vector3 levelDisplayMiddlePos = new(7, 6, 0);
-    Vector3 levelDisplayFinalPos = new(28.87f, 6, 0);
+    Vector3 levelDisplayMiddlePos = new(6.969f, 5.625f, 0);
+    Vector3 levelDisplayFinalPos = new(19.22f, 5.625f, 0);
     Vector3 scenarioFinalPos = new(0.5f, 0.5f, 0);
     public bool ExitSpawned { get; set; }
     public bool EnemySpawnedFromExit { get; set; }
@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
     {
         while (levelDisplay.transform.position != position)
         {
-            levelDisplay.transform.position = Vector3.MoveTowards(levelDisplay.transform.position, position, 20 * Time.deltaTime);
+            levelDisplay.transform.position = Vector3.MoveTowards(levelDisplay.transform.localPosition, position, 20 * Time.deltaTime);
             yield return null;
         }
 

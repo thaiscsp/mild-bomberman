@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 public class PlayerOneController : MonoBehaviour
@@ -46,29 +47,34 @@ public class PlayerOneController : MonoBehaviour
 
     private void Start()
     {
-        RetrieveComponents();
-
-        BombsRemaining = TotalBombs;
-    }
-
-    private void RetrieveComponents()
-    {
         animator = GetComponent<Animator>();
-        PlayerCollider = GetComponent<Collider2D>();
-        rigidBody = GetComponent<Rigidbody2D>();
-        SpriteRenderer = GetComponent<SpriteRenderer>();
 
-        sfxManager = FindFirstObjectByType<SFXManager>();
+        if (SceneManager.GetActiveScene().name != "World Map")
+        {
+            PlayerCollider = GetComponent<Collider2D>();
+            rigidBody = GetComponent<Rigidbody2D>();
+            SpriteRenderer = GetComponent<SpriteRenderer>();
+            sfxManager = FindFirstObjectByType<SFXManager>();
+
+            BombsRemaining = TotalBombs;
+        }
+        else
+        {
+            animator.SetTrigger("blink");
+        }
     }
 
     private void Update()
     {
-        walkInputs = InputActions.PlayerOne.Walk.ReadValue<Vector2>();
+        if (SceneManager.GetActiveScene().name != "World Map")
+        {
+            walkInputs = InputActions.PlayerOne.Walk.ReadValue<Vector2>();
 
-        Move();
-        SetAnimationParameters();
-        Flip();
-        CheckBombPressed();
+            Move();
+            SetAnimationParameters();
+            Flip();
+            CheckBombPressed();
+        }
     }
 
     private void Move()
