@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,29 +10,23 @@ public class GameManager : MonoBehaviour
     [Header("Game Objects")]
     public GameObject clock;
     public GameObject timer;
+    public GameObject denkyunPrefab;
     public GameObject puropenPrefab;
     public GameObject enemiesParent;
-    public GameObject scenario;
-
-    [Header("Tilemaps")]
-    public Tilemap backgroundTilemap;
-    public Tilemap buildingsTilemap;
-    public Tilemap redLightsTilemap;
+    public GameObject deathExplosionPrefab;
 
     [Header("UI")]
-    public GameObject levelDisplay;
     public TextMeshProUGUI livesDisplay;
     public TextMeshProUGUI scoreDisplay;
 
     // Script variables
     Animator clockAnimator;
     Animator timerAnimator;
-    PlayerOneController playerOneController;
+    public PlayerOneController playerOneController;
+    LevelIntroManager levelIntroManager;
     TilemapController tilemapController;
 
-    Vector3 levelDisplayMiddlePos = new(6.969f, 5.625f, 0);
-    Vector3 levelDisplayFinalPos = new(19.22f, 5.625f, 0);
-    Vector3 scenarioFinalPos = new(0.5f, 0.5f, 0);
+    public int currentLevel = 1;
     public bool ExitSpawned { get; set; }
     public bool EnemySpawnedFromExit { get; set; }
     public int EnemiesRemaining { get; set; }
@@ -41,16 +34,24 @@ public class GameManager : MonoBehaviour
     float startTime;
     bool timeLimitReached;
     bool countElapsedTime;
-    
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+        // DontDestroyOnLoad(playerOneController.gameObject);
+    }
+
     private void Start()
     {
-        RetrieveComponents();
+        clockAnimator = clock.GetComponent<Animator>();
+        timerAnimator = timer.GetComponent<Animator>();
+        playerOneController = FindFirstObjectByType<PlayerOneController>();
+        levelIntroManager = FindFirstObjectByType<LevelIntroManager>();
+        tilemapController = FindFirstObjectByType<TilemapController>();
 
         playerOneController.gameObject.SetActive(false);
 
         SetInitialStats();
-        SetTilemapsColor();
-        StartCoroutine(MoveLevelDisplayRight(levelDisplayMiddlePos));
     }
 
     private void Update()
@@ -60,73 +61,10 @@ public class GameManager : MonoBehaviour
         CheckTimeLimit();
     }
 
-    private void RetrieveComponents()
-    {
-        clockAnimator = clock.GetComponent<Animator>();
-        timerAnimator = timer.GetComponent<Animator>();
-        playerOneController = FindFirstObjectByType<PlayerOneController>();
-        tilemapController = FindFirstObjectByType<TilemapController>();
-    }
-
     private void SetInitialStats()
     {
         playerOneController.Lives = 5;
         playerOneController.Score = 0;
-    }
-
-    private void SetTilemapsColor()
-    {
-        buildingsTilemap.color = Color.black;
-        redLightsTilemap.color = Color.black;
-        backgroundTilemap.color = Color.black;
-    }
-
-    private IEnumerator MoveLevelDisplayRight(Vector3 position)
-    {
-        while (levelDisplay.transform.position != position)
-        {
-            levelDisplay.transform.position = Vector3.MoveTowards(levelDisplay.transform.localPosition, position, 20 * Time.deltaTime);
-            yield return null;
-        }
-
-        if (position == levelDisplayMiddlePos)
-        {
-            StartCoroutine(MoveScenarioUp());
-            yield return new WaitForSeconds(0.1f);
-            StartCoroutine(ChangeScenarioColor());
-        }
-        else if (position == levelDisplayFinalPos)
-        {
-            yield return new WaitForSeconds(0.25f);
-            StartNewLevel();
-        }
-    }
-
-    private IEnumerator MoveScenarioUp()
-    {
-        while (scenario.transform.position != scenarioFinalPos)
-        {
-            scenario.transform.position = Vector3.MoveTowards(scenario.transform.position, scenarioFinalPos, 20 * Time.deltaTime);
-            yield return null;
-        }
-
-        yield return new WaitForSeconds(1);
-        StartCoroutine(MoveLevelDisplayRight(levelDisplayFinalPos));
-    }
-
-    private IEnumerator ChangeScenarioColor()
-    {
-        float t = Mathf.Clamp01(Time.time * Time.deltaTime);
-
-        while (t < 1)
-        {
-            backgroundTilemap.color = Color.Lerp(backgroundTilemap.color, Color.white, t);
-            buildingsTilemap.color = Color.Lerp(buildingsTilemap.color, Color.white, t);
-            redLightsTilemap.color = Color.Lerp(redLightsTilemap.color, Color.white, t);
-            t = Mathf.Clamp01(Time.time * Time.deltaTime);
-            // print(t);
-            yield return null;
-        }
     }
 
     public void CheckPlayerOneLives()
@@ -156,7 +94,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            gameObject.GetComponent<PuropenController>().Invincible = true;
+            gameObject.GetComponent<EnemyController>().Invincible = true;
         }
 
         SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -178,7 +116,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            gameObject.GetComponent<PuropenController>().Invincible = false;
+            gameObject.GetComponent<EnemyController>().Invincible = false;
         }
     }
 
@@ -201,7 +139,7 @@ public class GameManager : MonoBehaviour
 
     private void RestartLevel()
     {
-        SetTilemapsColor();
+        levelIntroManager.SetTilemapsColor();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -228,7 +166,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void StartNewLevel()
+    public void StartNewLevel()
     {
         startTime = Time.time;
         countElapsedTime = true;
@@ -241,7 +179,9 @@ public class GameManager : MonoBehaviour
         playerOneController.gameObject.SetActive(true);
 
         StartCoroutine(ActivateIFrame(playerOneController.gameObject, 100));
-        SpawnEnemies(puropenPrefab, 3, false);
+        
+        if (currentLevel != 3) SpawnEnemies(puropenPrefab, 3, false);
+        if (currentLevel == 2) SpawnEnemies(denkyunPrefab, 2, false);
     }
 
     public void SpawnEnemies(GameObject enemyPrefab, int totalEnemies, bool wasSpawnedFromExit, Vector3? forcedPosition = null)
@@ -275,7 +215,7 @@ public class GameManager : MonoBehaviour
             if (positionChosen)
             {
                 GameObject enemy = Instantiate(enemyPrefab, position + offset, Quaternion.identity);
-                enemy.GetComponent<PuropenController>().WasSpawnedFromExit = wasSpawnedFromExit;
+                enemy.GetComponent<EnemyController>().WasSpawnedFromExit = wasSpawnedFromExit;
                 enemy.transform.SetParent(enemiesParent.transform);
 
                 if (wasSpawnedFromExit)
@@ -290,6 +230,12 @@ public class GameManager : MonoBehaviour
                 positionChosen = false; // For the next iteration
             }
         }
+    }
+
+    public void GoToNextLevel()
+    {
+        if (currentLevel < 3) currentLevel++;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }

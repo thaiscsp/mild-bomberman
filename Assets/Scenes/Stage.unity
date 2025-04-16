@@ -461,15 +461,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clock: {fileID: 72756669}
   timer: {fileID: 1073482056}
+  denkyunPrefab: {fileID: 5565818181199859654, guid: a68e74c0c63df2b49a67e6a4143a2817, type: 3}
   puropenPrefab: {fileID: 7402928265262385689, guid: 906bcdcdcd5a54f41ba8b85e89f561d2, type: 3}
   enemiesParent: {fileID: 1297625134}
-  scenario: {fileID: 436117924}
-  backgroundTilemap: {fileID: 1403637025}
-  buildingsTilemap: {fileID: 557185658}
-  redLightsTilemap: {fileID: 320906109}
-  levelDisplay: {fileID: 1357035549}
+  deathExplosionPrefab: {fileID: 8761537062105196295, guid: a5364aa63af36c14b9fc216252869007, type: 3}
   livesDisplay: {fileID: 1235141536}
   scoreDisplay: {fileID: 77352694}
+  playerOneController: {fileID: 8689461122581320738}
+  currentLevel: 1
 --- !u!4 &298119385
 Transform:
   m_ObjectHideFlags: 0
@@ -816,8 +815,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 557185656}
   - {fileID: 1403637023}
+  - {fileID: 557185656}
   - {fileID: 320906107}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -833,12 +832,66 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8505906fe037c342ad6a2edac546896, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  redLightMiddleTile: {fileID: 11400000, guid: 92a91c57ddf58984e92107b990dce217, type: 2}
-  redLightTopTile: {fileID: 11400000, guid: f207c9ae150fbf645a582a2726f4f2a5, type: 2}
-  backgroundTile: {fileID: 11400000, guid: 66adfa33a2afc6d47b378ff6917531f0, type: 2}
-  buildingTile: {fileID: 11400000, guid: e2b67e718d16601489c3637e2fab6664, type: 2}
-  roundShadowTile: {fileID: 11400000, guid: 7876ec0232fd3e34b9f6c7f868469053, type: 2}
-  straightShadowTile: {fileID: 11400000, guid: bbf97de34e21eff41bb57a6373325efd, type: 2}
+  redLightMiddleTiles:
+  - {fileID: 11400000, guid: 92a91c57ddf58984e92107b990dce217, type: 2}
+  - {fileID: 11400000, guid: 92a91c57ddf58984e92107b990dce217, type: 2}
+  redLightTopTiles:
+  - {fileID: 11400000, guid: f207c9ae150fbf645a582a2726f4f2a5, type: 2}
+  - {fileID: 11400000, guid: f207c9ae150fbf645a582a2726f4f2a5, type: 2}
+  backgroundTiles:
+  - {fileID: 11400000, guid: 66adfa33a2afc6d47b378ff6917531f0, type: 2}
+  - {fileID: 11400000, guid: 66adfa33a2afc6d47b378ff6917531f0, type: 2}
+  topBuildingTiles:
+  - {fileID: 11400000, guid: 7f41bf1b33b2fb54f91957ab1e8f7704, type: 2}
+  - {fileID: 11400000, guid: 7f41bf1b33b2fb54f91957ab1e8f7704, type: 2}
+  bottomBuildingTiles:
+  - {fileID: 11400000, guid: 9d52a8e1db6ffc94b8428d3bf33759f4, type: 2}
+  - {fileID: 11400000, guid: 9d52a8e1db6ffc94b8428d3bf33759f4, type: 2}
+  leftBuildingTiles:
+  - {fileID: 11400000, guid: 6603d0b1b44dfe448a0b42ee9f2ff6d2, type: 2}
+  - {fileID: 11400000, guid: 6603d0b1b44dfe448a0b42ee9f2ff6d2, type: 2}
+  leftRearBuildingTiles:
+  - {fileID: 11400000, guid: 2a9551a92b3306344b6548e61fdb25b7, type: 2}
+  - {fileID: 11400000, guid: 2a9551a92b3306344b6548e61fdb25b7, type: 2}
+  rightBuildingTiles:
+  - {fileID: 0}
+  - {fileID: 0}
+  rightRearBuildingTiles:
+  - {fileID: 0}
+  - {fileID: 0}
+  topLeftCornerBuildingTiles:
+  - {fileID: 11400000, guid: a1845c5e1529fd9409e25dec35e63c03, type: 2}
+  - {fileID: 11400000, guid: a1845c5e1529fd9409e25dec35e63c03, type: 2}
+  topLeftCornerRearBuildingTiles:
+  - {fileID: 11400000, guid: e4b8adaab85a31a4d83305d3750c7548, type: 2}
+  - {fileID: 11400000, guid: e4b8adaab85a31a4d83305d3750c7548, type: 2}
+  topRightCornerBuildingTiles:
+  - {fileID: 0}
+  - {fileID: 0}
+  topRightCornerRearBuildingTiles:
+  - {fileID: 0}
+  - {fileID: 0}
+  bottomLeftCornerBuildingTiles:
+  - {fileID: 11400000, guid: cde2b5984fc07d145a94606c0813938e, type: 2}
+  - {fileID: 11400000, guid: cde2b5984fc07d145a94606c0813938e, type: 2}
+  bottomLeftCornerRearBuildingTiles:
+  - {fileID: 11400000, guid: 736ca02d3d5dc7c4f9336b2ee838341d, type: 2}
+  - {fileID: 11400000, guid: 736ca02d3d5dc7c4f9336b2ee838341d, type: 2}
+  bottomRightCornerBuildingTiles:
+  - {fileID: 0}
+  - {fileID: 0}
+  bottomRightCornerRearBuildingTiles:
+  - {fileID: 0}
+  - {fileID: 0}
+  buildingTiles:
+  - {fileID: 11400000, guid: e2b67e718d16601489c3637e2fab6664, type: 2}
+  - {fileID: 11400000, guid: e2b67e718d16601489c3637e2fab6664, type: 2}
+  roundShadowTiles:
+  - {fileID: 11400000, guid: 7876ec0232fd3e34b9f6c7f868469053, type: 2}
+  - {fileID: 11400000, guid: 7876ec0232fd3e34b9f6c7f868469053, type: 2}
+  straightShadowTiles:
+  - {fileID: 11400000, guid: bbf97de34e21eff41bb57a6373325efd, type: 2}
+  - {fileID: 11400000, guid: bbf97de34e21eff41bb57a6373325efd, type: 2}
   backgroundTilemap: {fileID: 1403637025}
   buildingsTilemap: {fileID: 557185658}
   redLightsTilemap: {fileID: 320906109}
@@ -2940,7 +2993,7 @@ GameObject:
   - component: {fileID: 1357035551}
   - component: {fileID: 1357035550}
   m_Layer: 0
-  m_Name: Stage Start
+  m_Name: Level Display
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4862,7 +4915,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1720978542
 Transform:
   m_ObjectHideFlags: 0
@@ -5067,12 +5120,65 @@ Transform:
   m_GameObject: {fileID: 1784049761}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12.6433, y: -0.0618, z: 9.986795}
-  m_LocalScale: {x: 9.190062, y: 14.207828, z: 1}
+  m_LocalPosition: {x: -13.1641, y: -0.1474, z: 9.986795}
+  m_LocalScale: {x: 10.231296, y: 15.577715, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1467117248}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2051515390
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2051515392}
+  - component: {fileID: 2051515393}
+  m_Layer: 0
+  m_Name: Level Intro Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2051515392
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051515390}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2051515393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051515390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 152524b02aea60a409589141c7dc04bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelDisplaySprites:
+  - {fileID: 21300000, guid: c91fdcaa4771d9f40ac486ecd11a0f43, type: 3}
+  - {fileID: 21300000, guid: 9badaddfcd75acc458833aad730d1045, type: 3}
+  - {fileID: 21300000, guid: f96b41b2ca7a46d4daec79e1d0c8ef44, type: 3}
+  levelDisplay: {fileID: 1357035549}
+  scenario: {fileID: 436117924}
+  backgroundTilemap: {fileID: 1403637025}
+  buildingsTilemap: {fileID: 557185658}
+  redLightsTilemap: {fileID: 320906109}
 --- !u!1 &2134919801
 GameObject:
   m_ObjectHideFlags: 0
@@ -5151,8 +5257,8 @@ Transform:
   m_GameObject: {fileID: 2134919801}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.5206, y: -0.0655, z: 9.986795}
-  m_LocalScale: {x: 9.1412, y: 14.215564, z: 1}
+  m_LocalPosition: {x: 13.014, y: -0.2025, z: 9.986795}
+  m_LocalScale: {x: 10.127536, y: 15.476645, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1467117248}
@@ -5340,11 +5446,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed2d7c572043c6e4d8ed54e2c88bb300, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
   bombPrefab: {fileID: 7685291055953376858, guid: 81a47e4fd02ad3c4883f7f23fa39f39b, type: 3}
+  explosionsParent: {fileID: 343596561}
   backgroundTilemap: {fileID: 1403637025}
   redLightsTilemap: {fileID: 320906109}
-  explosionsParent: {fileID: 343596561}
+  speed: 3
   explosionRadius: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -5352,6 +5458,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 298119385}
+  - {fileID: 2051515392}
   - {fileID: 1720978542}
   - {fileID: 660031210}
   - {fileID: 3450358708465045300}

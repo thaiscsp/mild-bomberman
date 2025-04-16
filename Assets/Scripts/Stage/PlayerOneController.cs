@@ -8,26 +8,25 @@ public class PlayerOneController : MonoBehaviour
     Animator animator;
     Rigidbody2D rigidBody;
     SFXManager sfxManager;
+    Vector2 walkInputs;
+    bool canPlaceBomb = true;
+
     public Collider2D PlayerCollider { get; private set; }
-    // public PlayerOneMap InputActions { get; private set; }
     public PlayerOneMap InputActions { get; private set; }
     public SpriteRenderer SpriteRenderer { get; private set; }
-
-    Vector2 walkInputs;
     public Vector3 StartPosition { get; private set; } = new(1, 11.3f, 0);
-
     public bool Invincible { private get; set; }
     public bool Knockedout { get; set; }
     public int Lives { get; set; }
     public int Score { get; set; }
-    public float speed = 3f;
     public int BombsRemaining { get; set; }
     public int TotalBombs { get; set; } = 1;
-    bool canPlaceBomb = true;
+
     public GameObject bombPrefab;
+    public GameObject explosionsParent;
     public Tilemap backgroundTilemap;
     public Tilemap redLightsTilemap;
-    public GameObject explosionsParent;
+    public float speed = 3f;
     public int explosionRadius = 1;
 
     private void Awake()

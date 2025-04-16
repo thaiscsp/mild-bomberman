@@ -3,33 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class PuropenController : MonoBehaviour
+public class EnemyController : MonoBehaviour
 {
-    Animator animator;
     GameManager gameManager;
+    GameObject deathExplosion;
     PlayerOneController playerOneController;
     Rigidbody2D rigidBody;
-    SpriteRenderer spriteRenderer;
-    GameObject deathExplosion;
 
-    Color originalColor;
-    Vector2 direction = Vector2.down;
-
-    bool wasHit;
-
+    public Animator animator { get; private set; }
+    public SpriteRenderer SpriteRenderer { get; private set; }
+    public Vector2 direction { get; private set; } = Vector2.down;
     public bool Invincible { private get; set; }
     public bool WasSpawnedFromExit { private get; set; }
 
-    public Sprite[] pointsSprites;
-    public GameObject deathExplosionPrefab;
-    public float raySize;
+    public float raySize = 0.55f;
     public float speed = 1.5f;
-    public int points;
-
-    private void OnDisable()
-    {
-        Invoke("DestroyPuropen", 0.33f);
-    }
+    public int lives = 1;
+    public int points = 100;
 
     private void Start()
     {
@@ -37,37 +27,24 @@ public class PuropenController : MonoBehaviour
         gameManager = FindFirstObjectByType<GameManager>();
         playerOneController = FindFirstObjectByType<PlayerOneController>();
         rigidBody = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        
-        originalColor = spriteRenderer.color;
+        SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
         Move();
-        SetAnimationParameters();
-        Flip();
         ChangeDirection();
+    }
+
+    private void OnDisable()
+    {
+        Invoke("DestroyEnemy", 0.33f);
     }
 
     private void Move()
     {
-        if (!wasHit)
-        {
-            rigidBody.velocity = direction * speed;
-        }
-    }
-
-    private void SetAnimationParameters()
-    {
-        animator.SetBool("isWalkingUp", direction == Vector2.up);
-        animator.SetBool("isWalkingDown", direction == Vector2.down);
-        animator.SetBool("isWalkingSide", direction == Vector2.left || direction == Vector2.right);
-    }
-
-    private void Flip()
-    {
-        spriteRenderer.flipX = direction == Vector2.right;
+        if (lives > 0) rigidBody.velocity = direction * speed;
+        else rigidBody.velocity = Vector2.zero;
     }
 
     private bool CanChangeDirection(RaycastHit2D[] enemyHit, RaycastHit2D generalHit)
@@ -76,13 +53,7 @@ public class PuropenController : MonoBehaviour
 
         // In RaycastAll() for the enemy, the first collider will always be the game object's own collider (enemy detects itself).
         // If the array has more than one element, the second one is sure to be an enemy other than the game object itself.
-        if (enemyHit.Length > 1)
-        {
-            canChangeDirection = true;
-        } else if (generalHit.collider!= null)
-        {
-            canChangeDirection = true;
-        }
+        if (enemyHit.Length > 1 || generalHit.collider != null) canChangeDirection = true;
 
         return canChangeDirection;
     }
@@ -93,9 +64,9 @@ public class PuropenController : MonoBehaviour
         Vector3 offset = new(0, 0.25f, 0); // Because the Puropen's middle (in the transform) is too high
         int layers = LayerMask.GetMask("Bomb", "Building", "RedLight");
 
-        // Detects if there is something in front of the Puropen
+        // Detects if there is something in front of the enemy
         // RaycastHit2D[] enemyHit = Physics2D.RaycastAll(transform.position - offset, direction, 1, LayerMask.GetMask("Enemy"));
-        RaycastHit2D[] enemyHit = Physics2D.BoxCastAll(transform.position - offset, Vector2.one *  0.75f, 0, direction, 1, LayerMask.GetMask("Enemy"));
+        RaycastHit2D[] enemyHit = Physics2D.BoxCastAll(transform.position - offset, Vector2.one * 0.75f, 0, direction, 1, LayerMask.GetMask("Enemy"));
         RaycastHit2D generalHit = Physics2D.Raycast(transform.position - offset, direction, raySize, layers);
 
         if (CanChangeDirection(enemyHit, generalHit)) // If there is...
@@ -104,7 +75,7 @@ public class PuropenController : MonoBehaviour
 
             for (int i = 0; i < directions.Length; i++)
             {
-                // A Box Cast will ensure the Puropen moves along the grid
+                // A Box Cast will ensure the enemy moves along the grid
                 generalHit = Physics2D.BoxCast(transform.position - offset, Vector2.one * 0.85f, 0, directions[i], 1f, layers);
                 availableDirections[i] = generalHit.collider == null; // A direction will be available if the boxcast didn't hit anything
             }
@@ -113,7 +84,7 @@ public class PuropenController : MonoBehaviour
             {
                 return;
             }
-            else // Finds a new direction for the Puropen to move to otherwise
+            else // Finds a new direction for the enemy to move to otherwise
             {
                 List<int> availableDirectionIndexes = new List<int>();
 
@@ -134,12 +105,10 @@ public class PuropenController : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Explosion") && !Invincible)
         {
-            // Stops movement
-            wasHit = true;
-            rigidBody.velocity = Vector2.zero;
+            lives--;
 
             StartCoroutine(FlashOnDamage());
-            StartCoroutine(DisablePuropen());
+            if (lives == 0) StartCoroutine(DisableEnemy());
         }
     }
 
@@ -150,19 +119,19 @@ public class PuropenController : MonoBehaviour
 
         for (int i = 0; i < flashCount; i++)
         {
-            spriteRenderer.color = Color.gray;
+            SpriteRenderer.color = Color.gray;
             yield return new WaitForSeconds(flashTime);
 
-            spriteRenderer.color = originalColor;
+            SpriteRenderer.color = Color.white;
             yield return new WaitForSeconds(flashTime);
         }
     }
 
-    private IEnumerator DisablePuropen()
+    private IEnumerator DisableEnemy()
     {
         yield return new WaitForSeconds(1);
 
-        deathExplosion = Instantiate(deathExplosionPrefab, transform.position, Quaternion.identity);
+        deathExplosion = Instantiate(gameManager.deathExplosionPrefab, transform.position, Quaternion.identity);
 
         gameManager.EnemiesRemaining--;
         playerOneController.Score += points;
@@ -176,9 +145,10 @@ public class PuropenController : MonoBehaviour
     }
 
 
-    private void DestroyPuropen()
+    private void DestroyEnemy()
     {
         Destroy(deathExplosion);
         Destroy(gameObject);
     }
+
 }

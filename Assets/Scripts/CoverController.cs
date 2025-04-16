@@ -70,7 +70,7 @@ public class CoverController : MonoBehaviour
     {
         if (spriteRenderer.color == Color.black && transitionState == TransitionState.BlackFadeIn && SceneManager.GetActiveScene().name == "World Map")
         {
-            SceneManager.LoadScene("Stage 1-1");
+            SceneManager.LoadScene("Stage");
         }
     }
 }

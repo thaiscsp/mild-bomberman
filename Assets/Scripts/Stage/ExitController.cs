@@ -1,15 +1,18 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ExitController : MonoBehaviour
 {
-    private GameManager gameManager;
-    private SFXManager sfxManager;
+    GameManager gameManager;
+    SFXManager sfxManager;
+    SoundtrackManager soundtrackManager;
 
     private void Start()
     {
         gameManager = FindFirstObjectByType<GameManager>();
         sfxManager = FindFirstObjectByType<SFXManager>();
+        soundtrackManager = FindAnyObjectByType<SoundtrackManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,6 +27,7 @@ public class ExitController : MonoBehaviour
     {
         Vector3 offset = new(0, 0.3f, 0);
 
+        soundtrackManager.gameObject.SetActive(false);
         sfxManager.PlayClip(sfxManager.stageClear);
 
         playerOne.GetComponent<PlayerOneController>().InputActions.Disable();
@@ -33,6 +37,7 @@ public class ExitController : MonoBehaviour
         yield return new WaitForSeconds(3.5f);
 
         playerOne.SetActive(false);
+        gameManager.GoToNextLevel();
     }
 
 }

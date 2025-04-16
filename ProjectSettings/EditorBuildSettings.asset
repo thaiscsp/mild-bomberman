@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/World Map.unity
     guid: ba0403b19ba3594459a7788499485566
   - enabled: 1
-    path: Assets/Scenes/Stage 1-1.unity
+    path: Assets/Scenes/Stage.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: cecb98b30f024104d86ce1720660f17d, type: 3}
