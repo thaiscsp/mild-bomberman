@@ -748,7 +748,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Building_6
+      name: Building
       rect:
         serializedVersion: 2
         x: 288
@@ -832,7 +832,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Building_0
+      name: TownBorder_0
       rect:
         serializedVersion: 2
         x: 254
@@ -853,7 +853,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Building_1
+      name: TownBorder_1
       rect:
         serializedVersion: 2
         x: 271
@@ -874,7 +874,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Building_2
+      name: TownBorder_2
       rect:
         serializedVersion: 2
         x: 288
@@ -895,7 +895,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Building_3
+      name: TownBorder_3
       rect:
         serializedVersion: 2
         x: 305
@@ -916,7 +916,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Building_4
+      name: TownBorder_4
       rect:
         serializedVersion: 2
         x: 254
@@ -937,7 +937,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Building_5
+      name: TownBorder_5
       rect:
         serializedVersion: 2
         x: 271
@@ -958,7 +958,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Building_7
+      name: TownBorder_6
       rect:
         serializedVersion: 2
         x: 254
@@ -979,7 +979,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Building_8
+      name: TownBorder_7
       rect:
         serializedVersion: 2
         x: 271
@@ -1000,7 +1000,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Building_9
+      name: TownBorder_8
       rect:
         serializedVersion: 2
         x: 288
@@ -1021,7 +1021,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Building_10
+      name: TownBorder_9
       rect:
         serializedVersion: 2
         x: 339
@@ -1575,7 +1575,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1583,6 +1583,1077 @@ TextureImporter:
       bones: []
       spriteID: 707f863b423ea1c448c28587ee4357cf
       internalID: -294660891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VillageBorder_0
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 651
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97bc5e422f3b7f747a673519c194414a
+      internalID: -157046848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VillageBorder_1
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 651
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7da1a8c0267b5e4bafe9185ddf05e74
+      internalID: 1688435132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VillageBorder_2
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 651
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93008aaa7082f2242bdc92c12e9953fb
+      internalID: -379328438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VillageBorder_3
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 634
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05b985cfd5f777c419418181a12c1771
+      internalID: 841060738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VillageBorder_4
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 634
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7390e4a68a9d6fd4ab34ab319a578866
+      internalID: -826712912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VillageBorder_5
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 617
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4271a889a7d184458e1d28c5e356e3d
+      internalID: 1966435914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VillageBorder_6
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 600
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffb43c726d6d67f459e783ca1ce32040
+      internalID: -1525749211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VillageBorder_7
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 600
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 386fa8bb9498b704c97ca4058fc5b129
+      internalID: -1991768966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VillageBorder_8
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 583
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6dab4ad932d41447b09dd88ba005308
+      internalID: -94698385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VillageBorder_9
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 583
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 599f69485d6b5764c98a1fc9d10db452
+      internalID: 98125397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: VillageBorder_10
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 583
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a842fdb365b4a8a4cbb654f1d5714c77
+      internalID: 1814995909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stump_0
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 634
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 41258f19282cc724abdb5bc3dc43a6d6
+      internalID: 1698729513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Stump_1
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 634
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d81b9d65ca6decc489c2336b19f4cc46
+      internalID: -81515116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: House
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 634
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8d8725ccec241344849c629c10e14b6
+      internalID: 1493991517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_4
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 651
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b92a135cb2c6e684b9287be5a88c16d6
+      internalID: -697048199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_5
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 617
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c2920652cf865b4ca2f547104c3a879
+      internalID: -1188244695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_6
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 617
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a325928eada158e4ea78d0952cc49b40
+      internalID: -165971540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StumpDesroy_0
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 481
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b9664aee0f3e204cba6ac8bff0d31e1
+      internalID: 629084153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StumpDesroy_1
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 481
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd98f3228cc698a46929b4413ccbb0a9
+      internalID: -1808018150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StumpDesroy_2
+      rect:
+        serializedVersion: 2
+        x: 441
+        y: 481
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89df3528c5f306a4fbd58c84a3916b43
+      internalID: -906231147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StumpDesroy_3
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 481
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea33e003b98e0ab4094887a819420aed
+      internalID: 1838303668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StumpDesroy_4
+      rect:
+        serializedVersion: 2
+        x: 475
+        y: 481
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 452a8e2a955790d43baa1bfff8628305
+      internalID: -1599805619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: StumpDesroy_5
+      rect:
+        serializedVersion: 2
+        x: 492
+        y: 481
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c12054b295c5c7438436aa12753edfe
+      internalID: -1603317539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastleBorder_0
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 634
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21e5abd51d1fe9c4ab19e429f0f2f97c
+      internalID: -1160606578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastleBorder_1
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 634
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4075de262ef369e4e8e246472b93627f
+      internalID: 1799759522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_3
+      rect:
+        serializedVersion: 2
+        x: 458
+        y: 651
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1dd21b6a0a733d45b0e496e13fcae77
+      internalID: 176728942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Background_7
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 600
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d2ff488870258849853c90e30a8eb18
+      internalID: -589384254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Obstacle
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 617
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e93cbcb3555035144b7904d6be0b0706
+      internalID: -1302176180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastleBorder_2
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 617
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d4eb03c8cfbdcd4e8e75fdbef2a0510
+      internalID: -516584251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastleBorder_3
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 600
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2613eecc8190b54e8dc0a64d73c749b
+      internalID: 1458872008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastleBorder_4
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 583
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 43e85518ebbbfc3498d9ffd07c1fab9f
+      internalID: 2133855832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastleBorder_5
+      rect:
+        serializedVersion: 2
+        x: 577
+        y: 583
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 900b17927da7f64448d864b7c4851681
+      internalID: 982327914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastleBorder_6
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 634
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fcaf157a238698a4ab750e00c5df4b68
+      internalID: -655082937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastleBorder_7
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 634
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 014d89dece8da6c44ac010efac87c1cc
+      internalID: 668271938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastleBorder_8
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 634
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2f7857e4bd5888a49866843cb42a0195
+      internalID: 142764303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastleBorder_9
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 617
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90fd444dbb1bbf3469adf1035697db4f
+      internalID: -1271533947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastleBorder_10
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 617
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12a05cfeb7b594f43909458e3121fcd9
+      internalID: -293380358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastleBorder_11
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 617
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f39fddc1353545c4494de75bf55ab5ff
+      internalID: 1188050747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastleBorder_12
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 600
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd6d4f0853caf4c4e808837dff1a4aba
+      internalID: 1346926768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastleBorder_13
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 600
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72fa57163d3a83e46abca46fd3c72d6d
+      internalID: -825386389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastleBorder_14
+      rect:
+        serializedVersion: 2
+        x: 594
+        y: 583
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb59b11dfbfb516448f9136135a41e11
+      internalID: -1998033753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: CastleBorder_15
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 583
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffcbb05807bd74d4997c300c7ef63c16
+      internalID: 1687172289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bricks_0
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 633
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebdbc1ca9963b73419c84133e1e1c5b5
+      internalID: -1283368796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bricks_1
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 633
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50524523ef08e9844ab36b55df1928bc
+      internalID: 455318614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bricks_2
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 633
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 179629ee83bcb1242a07807454154d4e
+      internalID: -369091902
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bricks_3
+      rect:
+        serializedVersion: 2
+        x: 696
+        y: 633
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9b7c675dbe0ca9c428ce4277a1142684
+      internalID: 1653338046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bricks_4
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 616
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe457b88fb5a28440a98f93d8be316a6
+      internalID: -1383016988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bricks_5
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 616
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 902f5a9fb50cd6f48a61f483a2b33953
+      internalID: 1701585484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bricks_6
+      rect:
+        serializedVersion: 2
+        x: 679
+        y: 616
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0385b16098bbe874ea2d8f5a6742bce6
+      internalID: -1433015047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bricks_7
+      rect:
+        serializedVersion: 2
+        x: 696
+        y: 616
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69bfa3528ee2a5d4cbb439bc67f312ba
+      internalID: 727447852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bricks_8
+      rect:
+        serializedVersion: 2
+        x: 628
+        y: 600
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd65b2ee8ce16dc43a4e0f2332743697
+      internalID: 818451823
       vertices: []
       indices: 
       edges: []
@@ -1601,20 +2672,40 @@ TextureImporter:
       Background_0: -382909111
       Background_1: -1169898811
       Background_2: 1538650596
+      Background_3: 176728942
+      Background_4: -697048199
+      Background_5: -1188244695
+      Background_6: -165971540
+      Background_7: -589384254
       Bomb_0: -1859533882
       Bomb_1: 778797299
       Bomb_2: -2074508029
-      Building_0: -2061008499
-      Building_1: -221844179
-      Building_10: -1388380240
-      Building_2: 1313235430
-      Building_3: 904513995
-      Building_4: -215579315
-      Building_5: -320069710
-      Building_6: -506446719
-      Building_7: -1708899951
-      Building_8: -167458963
-      Building_9: 2062977964
+      Bricks_0: -1283368796
+      Bricks_1: 455318614
+      Bricks_2: -369091902
+      Bricks_3: 1653338046
+      Bricks_4: -1383016988
+      Bricks_5: 1701585484
+      Bricks_6: -1433015047
+      Bricks_7: 727447852
+      Bricks_8: 818451823
+      Building: -506446719
+      CastleBorder_0: -1160606578
+      CastleBorder_1: 1799759522
+      CastleBorder_10: -293380358
+      CastleBorder_11: 1188050747
+      CastleBorder_12: 1346926768
+      CastleBorder_13: -825386389
+      CastleBorder_14: -1998033753
+      CastleBorder_15: 1687172289
+      CastleBorder_2: -516584251
+      CastleBorder_3: 1458872008
+      CastleBorder_4: 2133855832
+      CastleBorder_5: 982327914
+      CastleBorder_6: -655082937
+      CastleBorder_7: 668271938
+      CastleBorder_8: 142764303
+      CastleBorder_9: -1271533947
       FireEnd_0: 1368672784
       FireEnd_1: -632872164
       FireEnd_2: 1457284919
@@ -1647,6 +2738,7 @@ TextureImporter:
       FireUp_2: -895319977
       FireUp_3: -636159997
       FireUp_4: 642312262
+      House: 1493991517
       ItemDestroy_0: 1621245750
       ItemDestroy_1: -2134479397
       ItemDestroy_2: -565180254
@@ -1654,6 +2746,7 @@ TextureImporter:
       ItemDestroy_4: 339127544
       ItemDestroy_5: -1021172061
       ItemDestroy_6: -116233547
+      Obstacle: -1302176180
       RedBomb_0: 1590419305
       RedBomb_1: -1348797372
       RedBomb_2: -1185513502
@@ -1673,11 +2766,39 @@ TextureImporter:
       RedLightTop_3: 2101720669
       RedTimeBomb_0: 2026056165
       RedTimeBomb_1: 1770308956
-      S: -1622738515
       SNES - Super Bomberman - Tiles_1: -1565291638
+      StumpDesroy_0: 629084153
+      StumpDesroy_1: -1808018150
+      StumpDesroy_2: -906231147
+      StumpDesroy_3: 1838303668
+      StumpDesroy_4: -1599805619
+      StumpDesroy_5: -1603317539
+      Stump_0: 1698729513
+      Stump_1: -81515116
       Test Exit: -294660891
       TimeBomb_0: 1738373049
       TimeBomb_1: -1783109713
+      TownBorder_0: -2061008499
+      TownBorder_1: -221844179
+      TownBorder_2: 1313235430
+      TownBorder_3: 904513995
+      TownBorder_4: -215579315
+      TownBorder_5: -320069710
+      TownBorder_6: -1708899951
+      TownBorder_7: -167458963
+      TownBorder_8: 2062977964
+      TownBorder_9: -1388380240
+      VillageBorder_0: -157046848
+      VillageBorder_1: 1688435132
+      VillageBorder_10: 1814995909
+      VillageBorder_2: -379328438
+      VillageBorder_3: 841060738
+      VillageBorder_4: -826712912
+      VillageBorder_5: 1966435914
+      VillageBorder_6: -1525749211
+      VillageBorder_7: -1991768966
+      VillageBorder_8: -94698385
+      VillageBorder_9: 98125397
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -7,83 +7,85 @@ public class TilemapController : MonoBehaviour
 {
     GameManager gameManager;
 
+    // des = Destructible
+    // indes = Indestructible
     int startingPositionCode = 0;
     int nearbyTileCode = 1;
-    int staticBuildingCode = 2;
-    int randomBuildingCode = 3;
+    int staticIndesCode = 2;
+    int randomIndesCode = 3;
     public int backgroundCode { get; private set; } = 4;
-    int redLightCode = 5;
+    int desCode = 5;
     public int totalRows { get; private set; } = 11;
     public int totalColumns { get; private set; } = 13;
     public int[,] map { get; private set; }
-    public int totalRedLights { get; private set; } = 33;
+    public int totalDes { get; private set; } = 33;
+
+    AnimatedTile desTop, desMiddle;
+
+    Tile background, indes, indesShadow, desShadow;
 
     [Header("Animated Tiles")]
-    public AnimatedTile[] redLightMiddleTiles;
-    public AnimatedTile[] redLightTopTiles;
+    public AnimatedTile[] desTopTiles;
+    public AnimatedTile[] desMiddleTiles;
 
     [Header("Regular Tiles")]
     public Tile[] backgroundTiles;
-    public Tile[] topBuildingTiles, bottomBuildingTiles,
-        leftBuildingTiles, leftRearBuildingTiles, rightBuildingTiles, rightRearBuildingTiles,
-        topLeftCornerBuildingTiles, topLeftCornerRearBuildingTiles, topRightCornerBuildingTiles, topRightCornerRearBuildingTiles,
-        bottomLeftCornerBuildingTiles, bottomLeftCornerRearBuildingTiles, bottomRightCornerBuildingTiles, bottomRightCornerRearBuildingTiles;
-    public Tile[] buildingTiles;
-    public Tile[] roundShadowTiles;
-    public Tile[] straightShadowTiles;
+    public Tile[] indesTiles;
+    public Tile[] indesShadowTiles;
+    public Tile[] desShadowTiles;
 
     [Header("Tilemaps")]
     public Tilemap backgroundTilemap;
-    public Tilemap buildingsTilemap;
-    public Tilemap redLightsTilemap;
+    public Tilemap destructiblesTilemap;
+    public Tilemap indestructiblesTilemap;
+    public Tilemap townBorderTilemap;
+    public Tilemap villageBorderTilemap;
+    public Tilemap castleBorderTilemap;
 
     private void Awake()
     {
         gameManager = FindFirstObjectByType<GameManager>();
-        SetAnimatedTileSpeeds(0);
-        PlaceBorderTiles();
+
+        SetTileVariables();
+        EnableBorder();
+        SetAnimatedTilesSpeeds(0);
         CreateMap(); // Must be called on Awake() so that the GameManager can retrieve the map variable on Start()
     }
 
-    public void SetAnimatedTileSpeeds(int speed)
+    // To avoid accessing the arrays repeatedly
+    private void SetTileVariables()
     {
-        redLightMiddleTiles[gameManager.currentLevel].m_MinSpeed = speed;
-        redLightMiddleTiles[gameManager.currentLevel].m_MaxSpeed = speed;
+        int index = gameManager.currentLevel - 1;
 
-        redLightTopTiles[gameManager.currentLevel].m_MinSpeed = speed;
-        redLightTopTiles[gameManager.currentLevel].m_MaxSpeed = speed;
+        background = backgroundTiles[index];
 
-        redLightsTilemap.RefreshAllTiles();
+        indes = indesTiles[index];
+        indesShadow = indesShadowTiles[index];
+        
+        desTop = desTopTiles[index];
+        desMiddle = desMiddleTiles[index];
+        desShadow = desShadowTiles[index];
     }
 
-    private void PlaceBorderTiles()
+    private void EnableBorder()
     {
-        for (int column = 0; column < totalColumns; column++)
-        {
-            backgroundTilemap.SetTile(new Vector3Int(column, 11), topBuildingTiles[gameManager.currentLevel]);
-            backgroundTilemap.SetTile(new Vector3Int(column, -1), bottomBuildingTiles[gameManager.currentLevel]);
-        }
-
-        for (int row = 0; row < totalRows; row++)
-        {
-            backgroundTilemap.SetTile(new Vector3Int(-1, row), leftBuildingTiles[gameManager.currentLevel]);
-            backgroundTilemap.SetTile(new Vector3Int(-2, row), leftRearBuildingTiles[gameManager.currentLevel]);
-            backgroundTilemap.SetTile(new Vector3Int(-1, row), rightBuildingTiles[gameManager.currentLevel]);
-            backgroundTilemap.SetTile(new Vector3Int(-2, row), rightRearBuildingTiles[gameManager.currentLevel]);
-        }
-
-        backgroundTilemap.SetTile(new Vector3Int(11, -1), topLeftCornerBuildingTiles[gameManager.currentLevel]);
-        backgroundTilemap.SetTile(new Vector3Int(11, -2), topLeftCornerRearBuildingTiles[gameManager.currentLevel]);
-        backgroundTilemap.SetTile(new Vector3Int(11, 13), topRightCornerBuildingTiles[gameManager.currentLevel]);
-        backgroundTilemap.SetTile(new Vector3Int(11, 14), topRightCornerRearBuildingTiles[gameManager.currentLevel]);
-
-        backgroundTilemap.SetTile(new Vector3Int(-1, -1), bottomLeftCornerBuildingTiles[gameManager.currentLevel]);
-        backgroundTilemap.SetTile(new Vector3Int(-1, -2), bottomLeftCornerRearBuildingTiles[gameManager.currentLevel]);
-        backgroundTilemap.SetTile(new Vector3Int(-1, 13), bottomRightCornerBuildingTiles[gameManager.currentLevel]);
-        backgroundTilemap.SetTile(new Vector3Int(-1, 14), bottomRightCornerRearBuildingTiles[gameManager.currentLevel]);
+        if (gameManager.currentLevel < 3) townBorderTilemap.gameObject.SetActive(true);
+        else if (gameManager.currentLevel < 6) villageBorderTilemap.gameObject.SetActive(true);
+        else castleBorderTilemap.gameObject.SetActive(true);
     }
 
-    // Ensures the amount of Buildings and Red Lights in rows and columns will stay limited to the maximum amount
+    public void SetAnimatedTilesSpeeds(int speed)
+    {
+        desMiddle.m_MinSpeed = speed;
+        desMiddle.m_MaxSpeed = speed;
+
+        desTop.m_MinSpeed = speed;
+        desTop.m_MaxSpeed = speed;
+
+        destructiblesTilemap.RefreshAllTiles();
+    }
+
+    // Ensures the amount of indestructibles and destructibles in rows and columns will stay limited to the maximum amount
     bool CheckTileLines(int tileType, int currentRow, int currentColumn)
     {
         bool canPlaceTile = false;
@@ -92,11 +94,11 @@ public class TilemapController : MonoBehaviour
         int maxRow = 0;
         int maxColumn = 0;
 
-        if (tileType == randomBuildingCode)
+        if (tileType == randomIndesCode)
         {
             maxRow = 3;
             maxColumn = 4;
-        } else if (tileType == redLightCode)
+        } else if (tileType == desCode)
         {
             maxRow = 7;
             maxColumn = 7;
@@ -126,15 +128,17 @@ public class TilemapController : MonoBehaviour
 
     private void CreateMap()
     {
-        int placedBuildings = 0;
-        int placedRedLights = 0;
-        int totalBuildings = 8;
         map = new int[totalRows, totalColumns];
 
-        System.Random random = new();
-        Vector3Int position = new(0, 0, 0); // 0x0 in the Tilemap corresponds to the lower left green Background tile (Background_1)
+        CreateBaseMap();
+        PlaceIndestructiblesCodes();
+        PlaceDestructiblesCodes();
+        CheckForInaccessibleAreas();
+    }
 
-        // Creates a 11x13 2D array representing the level map with the specified tile codes
+    // Creates a 11x13 2D array representing the level map with the specified tile codes
+    private void CreateBaseMap()
+    {
         for (int row = 0; row < totalRows; row++)
         {
             for (int column = 0; column < totalColumns; column++)
@@ -142,82 +146,71 @@ public class TilemapController : MonoBehaviour
                 if (row == 10 && column == 0)
                 {
                     map[row, column] = startingPositionCode;
-                } else if ((row == 9 && column == 0) || (row == 10 && column == 1))
+                }
+                else if ((row == 9 && column == 0) || (row == 10 && column == 1))
                 {
                     map[row, column] = nearbyTileCode;
-                } else if (row % 2 == 0)
+                }
+                else if (row % 2 == 0)
                 {
                     map[row, column] = backgroundCode;
-                } else
+                }
+                else
                 {
                     if (column % 2 == 0)
                     {
                         map[row, column] = backgroundCode;
-                    } else
+                    }
+                    else
                     {
-                        map[row, column] = staticBuildingCode;
+                        map[row, column] = staticIndesCode;
                     }
                 }
             }
         }
+    }
 
-        // Places the random Buildings
-        while (placedBuildings < totalBuildings)
+    private void PlaceIndestructiblesCodes()
+    {
+        int placedIndes = 0;
+        int totalIndes = 8;
+
+        while (placedIndes < totalIndes)
         {
-            for (int i = 0; i < totalBuildings; i++)
+            for (int i = 0; i < totalIndes; i++)
             {
-                int row = random.Next(0, totalRows);
-                int column = random.Next(0, totalColumns);
-                bool canPlaceBuilding = CheckTileLines(randomBuildingCode, row, column)/* && CheckDiagonalTiles(row, column)*/;
+                int row = Random.Range(0, totalRows);
+                int column = Random.Range(0, totalColumns);
+                bool canPlaceIndes = CheckTileLines(randomIndesCode, row, column);
 
-                if (map[row, column] == backgroundCode && placedBuildings < totalBuildings && canPlaceBuilding)
+                if (map[row, column] == backgroundCode && placedIndes < totalIndes && canPlaceIndes)
                 {
-                    //position = new(column, row, 0);
-                    //buildingsTilemap.SetTile(position, buildingTile);
-
-                    //// If the Building was positioned above a regular Background tile, replaces it with the corresponding shadowed Background tile
-                    //if (row > 0 && map[row - 1, column] == backgroundCode)
-                    //{
-                    //    position.y = row - 1;
-                    //    backgroundTilemap.SetTile(position, straightShadowTile);
-                    //}
-
-                    map[row, column] = randomBuildingCode;
-                    placedBuildings++;
+                    map[row, column] = randomIndesCode;
+                    placedIndes++;
                 }
             }
         }
+    }
 
-        // Places the Red Lights
-        while (placedRedLights < totalRedLights)
+    private void PlaceDestructiblesCodes()
+    {
+        int placedDes = 0;
+
+        while (placedDes < totalDes)
         {
-            for (int i = 0; i < totalRedLights; i++)
+            for (int i = 0; i < totalDes; i++)
             {
-                int row = random.Next(0, totalRows);
-                int column = random.Next(0, totalColumns);
-                bool canPlaceRedLight = CheckTileLines(redLightCode, row, column);
+                int row = Random.Range(0, totalRows);
+                int column = Random.Range(0, totalColumns);
+                bool canPlaceDes = CheckTileLines(desCode, row, column);
 
-                if (map[row, column] == backgroundCode && placedRedLights < totalRedLights && canPlaceRedLight)
+                if (map[row, column] == backgroundCode && placedDes < totalDes && canPlaceDes)
                 {
-                    //position = new(column, row, 0);
-
-                    //AnimatedTile tile = row == 10 ? redLightTopTile : redLightMiddleTile;
-                    //redLightsTilemap.SetTile(position, tile);
-
-                    //// If the RedLight was positioned above a regular Background tile, replaces it with the corresponding shadowed Background tile
-                    //if (row > 0 && map[row - 1, column] == backgroundCode)
-                    //{
-                    //    position.y = row - 1;
-                    //    backgroundTilemap.SetTile(position, roundShadowTile);
-                    //}
-
-                    map[row, column] = redLightCode;
-                    placedRedLights++;
+                    map[row, column] = desCode;
+                    placedDes++;
                 }
             }
         }
-
-        CheckForInaccessibleAreas();
     }
 
     private void CheckForInaccessibleAreas()
@@ -242,33 +235,45 @@ public class TilemapController : MonoBehaviour
         if (visitedPositions.Count < expectedToVisit)
         {
             print("Regenerating tilemaps. Inaccessible tiles: " + (expectedToVisit - visitedPositions.Count));
-            // ClearTilemaps();
             CreateMap();
         }
         else PlaceInnerTiles();
     }
 
-    private void PlaceInnerTiles()
+    private void PlaceInnerTiles() // arrumar isso outra hora...
     {
         for (int row = 0; row < totalRows; row++)
         {
             for (int column = 0; column < totalColumns; column++)
             {
                 Vector3Int position = new(column, row, 0);
+                int tileCode = map[row, column];
 
-                if (map[row, column] == staticBuildingCode || map[row, column] == randomBuildingCode) buildingsTilemap.SetTile(position, buildingTiles[gameManager.currentLevel]);
-                else if (map[row, column] == redLightCode)
+                if (tileCode == startingPositionCode)
                 {
-                    AnimatedTile tile = row == 10 ? redLightTopTiles[gameManager.currentLevel] : redLightMiddleTiles[gameManager.currentLevel];
-                    redLightsTilemap.SetTile(position, tile);
+                    if (gameManager.currentLevel >= 3 || gameManager.currentLevel <= 5) backgroundTilemap.SetTile(position, background);
+                    else backgroundTilemap.SetTile(position, indesShadow);
+                }
+                else if (tileCode == nearbyTileCode)
+                {
+                    if (gameManager.currentLevel >= 3 || gameManager.currentLevel <= 5 || row == 9) backgroundTilemap.SetTile(position, background);
+                    else if (row == 10) backgroundTilemap.SetTile(position, indesShadow);
+                }
+
+                else if (map[row, column] == staticIndesCode || map[row, column] == randomIndesCode) indestructiblesTilemap.SetTile(position, indes);
+                else if (map[row, column] == desCode)
+                {
+                    AnimatedTile tile = row == 10 ? desTop : desMiddle;
+                    destructiblesTilemap.SetTile(position, tile);
                 }
                 else if (map[row, column] == backgroundCode)
                 {
-                    if (row == 10) backgroundTilemap.SetTile(position, straightShadowTiles[gameManager.currentLevel]);
-                    else if (row > 0)
+                    if (gameManager.currentLevel >= 3 || gameManager.currentLevel <= 5) backgroundTilemap.SetTile(position, background);
+                    else if (row == 10) backgroundTilemap.SetTile(position, indesShadow);
+                    else
                     {
                         int lowerPosition = map[row + 1, column];
-                        Tile tile = lowerPosition == staticBuildingCode || lowerPosition == randomBuildingCode ? straightShadowTiles[gameManager.currentLevel] : lowerPosition == redLightCode ? roundShadowTiles[gameManager.currentLevel] : backgroundTiles[gameManager.currentLevel];
+                        Tile tile = lowerPosition == staticIndesCode || lowerPosition == randomIndesCode ? indesShadow : lowerPosition == desCode ? desShadow : background;
                         backgroundTilemap.SetTile(position, tile);
                     }
                 }
@@ -278,38 +283,11 @@ public class TilemapController : MonoBehaviour
 
     private void CheckAndPushPosition(List<Vector2Int> visitedPositions, Stack<Vector2Int> positionsToVisit, Vector2Int positionToVisit)
     {
-        if (positionToVisit.x >= 0 && positionToVisit.x <= 10 && positionToVisit.y >= 0 && positionToVisit.y <= 12 && !visitedPositions.Contains(positionToVisit) && map[positionToVisit.x, positionToVisit.y] != staticBuildingCode && map[positionToVisit.x, positionToVisit.y] != randomBuildingCode)
+        if (positionToVisit.x >= 0 && positionToVisit.x <= 10 && positionToVisit.y >= 0 && positionToVisit.y <= 12 && !visitedPositions.Contains(positionToVisit) && map[positionToVisit.x, positionToVisit.y] != staticIndesCode && map[positionToVisit.x, positionToVisit.y] != randomIndesCode)
         {
             positionsToVisit.Push(positionToVisit);
             visitedPositions.Add(positionToVisit);
         }
     }
-
-    //private void ClearTilemaps()
-    //{
-    //    Vector3Int position;
-
-    //    backgroundTilemap.ClearAllTiles();
-    //    redLightsTilemap.ClearAllTiles();
-
-    //    for (int row = 0; row < totalRows; row++)
-    //    {
-    //        for (int column = 0; column < totalColumns; column++)
-    //        {
-    //            position = new(column, row, 0);
-
-    //            if (map[row, column] == randomBuildingCode)
-    //            {
-    //                buildingsTilemap.SetTile(position, null);
-    //                backgroundTilemap.SetTile(position, backgroundTile);
-    //            }
-    //            else if (map[row, column] != staticBuildingCode)
-    //            {
-    //                Tile tile = row == 10 ? straightShadowTile : backgroundTile;
-    //                backgroundTilemap.SetTile(position, tile);
-    //            }
-    //        }
-    //    }
-    //}
 
 }

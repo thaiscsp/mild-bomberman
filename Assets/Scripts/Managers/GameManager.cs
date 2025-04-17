@@ -171,7 +171,7 @@ public class GameManager : MonoBehaviour
         startTime = Time.time;
         countElapsedTime = true;
 
-        tilemapController.SetAnimatedTileSpeeds(7);
+        tilemapController.SetAnimatedTilesSpeeds(7);
 
         clockAnimator.SetBool("tick", true);
         timerAnimator.SetTrigger("deplete");

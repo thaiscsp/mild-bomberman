@@ -60,7 +60,7 @@ public class BombController : MonoBehaviour
 
         gameManager = FindFirstObjectByType<GameManager>();
         playerOneController = FindFirstObjectByType<PlayerOneController>();
-        remainingRedLights = FindFirstObjectByType<TilemapController>().totalRedLights;
+        remainingRedLights = FindFirstObjectByType<TilemapController>().totalDes;
         sfxManager = FindFirstObjectByType<SFXManager>();
     }
 
