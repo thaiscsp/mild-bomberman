@@ -6,34 +6,43 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public int level = 1;
+
     // Inspector variables
-    [Header("Game Objects")]
+    [Header("Stats Board")]
     public GameObject clock;
     public GameObject timer;
-    public GameObject denkyunPrefab;
-    public GameObject puropenPrefab;
-    public GameObject enemiesParent;
-    public GameObject deathExplosionPrefab;
 
     [Header("UI")]
     public TextMeshProUGUI livesDisplay;
     public TextMeshProUGUI scoreDisplay;
 
+    [Header("Enemies")]
+    public GameObject enemiesParent;
+    public GameObject puropenPrefab;
+    public GameObject denkyunPrefab;
+    public GameObject starNutsPrefab;
+    public GameObject bakudaPrefab;
+    public GameObject pakupaPrefab;
+    public GameObject senshiyanPrefab;
+    public GameObject bigaronPrefab;
+    public GameObject deathExplosionPrefab;
+
     // Script variables
     Animator clockAnimator;
     Animator timerAnimator;
-    public PlayerOneController playerOneController;
     LevelIntroManager levelIntroManager;
+    PlayerOneController playerOneController;
     TilemapController tilemapController;
 
-    public int currentLevel = 1;
     public bool ExitSpawned { get; set; }
     public bool EnemySpawnedFromExit { get; set; }
     public int EnemiesRemaining { get; set; }
-    float timeLimit = 180f;
+
     float startTime;
-    bool timeLimitReached;
+    float timeLimit = 180f;
     bool countElapsedTime;
+    bool timeLimitReached;
 
     private void Awake()
     {
@@ -171,7 +180,7 @@ public class GameManager : MonoBehaviour
         startTime = Time.time;
         countElapsedTime = true;
 
-        tilemapController.SetAnimatedTilesSpeeds(7);
+        tilemapController.SetAnimatedTileSpeeds(7);
 
         clockAnimator.SetBool("tick", true);
         timerAnimator.SetTrigger("deplete");
@@ -179,9 +188,54 @@ public class GameManager : MonoBehaviour
         playerOneController.gameObject.SetActive(true);
 
         StartCoroutine(ActivateIFrame(playerOneController.gameObject, 100));
-        
-        if (currentLevel != 3) SpawnEnemies(puropenPrefab, 3, false);
-        if (currentLevel == 2) SpawnEnemies(denkyunPrefab, 2, false);
+
+        ChooseEnemiesToSpawn();
+    }
+
+    private void ChooseEnemiesToSpawn()
+    {
+        switch (level)
+        {
+            case 1:
+                SpawnEnemies(puropenPrefab, 3, false);
+                break;
+
+            case 2:
+                SpawnEnemies(puropenPrefab, 3, false);
+                SpawnEnemies(denkyunPrefab, 2, false);
+                break;
+
+            case 3:
+                SpawnEnemies(starNutsPrefab, 9, false);
+                break;
+
+            case 4:
+                SpawnEnemies(puropenPrefab, 2, false);
+                SpawnEnemies(denkyunPrefab, 2, false);
+                SpawnEnemies(bakudaPrefab, 2, false);
+                break;
+
+            case 5:
+                SpawnEnemies(puropenPrefab, 2, false);
+                SpawnEnemies(bakudaPrefab, 3, false);
+                SpawnEnemies(pakupaPrefab, 1, false);
+                break;
+
+            case 6:
+                SpawnEnemies(denkyunPrefab, 2, false);
+                SpawnEnemies(bakudaPrefab, 2, false);
+                SpawnEnemies(senshiyanPrefab, 2, false);
+                break;
+
+            case 7:
+                SpawnEnemies(bakudaPrefab, 3, false);
+                SpawnEnemies(senshiyanPrefab, 3, false);
+                break;
+
+            case 8:
+                SpawnEnemies(bigaronPrefab, 1, false);
+                break;
+        }
     }
 
     public void SpawnEnemies(GameObject enemyPrefab, int totalEnemies, bool wasSpawnedFromExit, Vector3? forcedPosition = null)
@@ -234,8 +288,11 @@ public class GameManager : MonoBehaviour
 
     public void GoToNextLevel()
     {
-        if (currentLevel < 3) currentLevel++;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        if (level < 3)
+        {
+            level++;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        } 
     }
 
 }

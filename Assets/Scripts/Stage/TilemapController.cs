@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using UnityEngine.UIElements;
 
 public class TilemapController : MonoBehaviour
 {
@@ -22,7 +21,9 @@ public class TilemapController : MonoBehaviour
 
     AnimatedTile desTop, desMiddle;
 
-    Tile background, indes, indesShadow, desShadow;
+    public Tile Background { get; private set; }
+    public Tile IndesShadow { get; private set; }
+    Tile indes, desShadow;
 
     [Header("Animated Tiles")]
     public AnimatedTile[] desTopTiles;
@@ -48,19 +49,19 @@ public class TilemapController : MonoBehaviour
 
         SetTileVariables();
         EnableBorder();
-        SetAnimatedTilesSpeeds(0);
+        SetAnimatedTileSpeeds(0);
         CreateMap(); // Must be called on Awake() so that the GameManager can retrieve the map variable on Start()
     }
 
     // To avoid accessing the arrays repeatedly
     private void SetTileVariables()
     {
-        int index = gameManager.currentLevel - 1;
+        int index = gameManager.level - 1;
 
-        background = backgroundTiles[index];
+        Background = backgroundTiles[index];
 
         indes = indesTiles[index];
-        indesShadow = indesShadowTiles[index];
+        IndesShadow = indesShadowTiles[index];
         
         desTop = desTopTiles[index];
         desMiddle = desMiddleTiles[index];
@@ -69,12 +70,12 @@ public class TilemapController : MonoBehaviour
 
     private void EnableBorder()
     {
-        if (gameManager.currentLevel < 3) townBorderTilemap.gameObject.SetActive(true);
-        else if (gameManager.currentLevel < 6) villageBorderTilemap.gameObject.SetActive(true);
+        if (gameManager.level < 3) townBorderTilemap.gameObject.SetActive(true);
+        else if (gameManager.level < 6) villageBorderTilemap.gameObject.SetActive(true);
         else castleBorderTilemap.gameObject.SetActive(true);
     }
 
-    public void SetAnimatedTilesSpeeds(int speed)
+    public void SetAnimatedTileSpeeds(int speed)
     {
         desMiddle.m_MinSpeed = speed;
         desMiddle.m_MaxSpeed = speed;
@@ -215,7 +216,7 @@ public class TilemapController : MonoBehaviour
 
     private void CheckForInaccessibleAreas()
     {
-        // Total tiles = 11 * 13, static buildings = 30, random buildings = 8
+        // Total tiles = 11 * 13, static indestructibles = 30, random indestructibles = 8
         // 11 * 13 - 30 - 8 = 105
         int expectedToVisit = 105;
         List<Vector2Int> visitedPositions = new();
@@ -240,42 +241,51 @@ public class TilemapController : MonoBehaviour
         else PlaceInnerTiles();
     }
 
-    private void PlaceInnerTiles() // arrumar isso outra hora...
+    private void PlaceInnerTiles()
     {
         for (int row = 0; row < totalRows; row++)
         {
             for (int column = 0; column < totalColumns; column++)
             {
+                Tile tile = Background;
                 Vector3Int position = new(column, row, 0);
                 int tileCode = map[row, column];
 
                 if (tileCode == startingPositionCode)
                 {
-                    if (gameManager.currentLevel >= 3 || gameManager.currentLevel <= 5) backgroundTilemap.SetTile(position, background);
-                    else backgroundTilemap.SetTile(position, indesShadow);
+                    if (gameManager.level >= 3 && gameManager.level <= 5) tile = Background;
+                    else tile = IndesShadow;
+
+                    backgroundTilemap.SetTile(position, tile);
                 }
+                
                 else if (tileCode == nearbyTileCode)
                 {
-                    if (gameManager.currentLevel >= 3 || gameManager.currentLevel <= 5 || row == 9) backgroundTilemap.SetTile(position, background);
-                    else if (row == 10) backgroundTilemap.SetTile(position, indesShadow);
+                    if ((gameManager.level >= 3 && gameManager.level <= 5) || row == 9) tile = Background;
+                    else if (row == 10) tile = IndesShadow;
+
+                    backgroundTilemap.SetTile(position, tile);
                 }
 
+                
                 else if (map[row, column] == staticIndesCode || map[row, column] == randomIndesCode) indestructiblesTilemap.SetTile(position, indes);
-                else if (map[row, column] == desCode)
-                {
-                    AnimatedTile tile = row == 10 ? desTop : desMiddle;
-                    destructiblesTilemap.SetTile(position, tile);
-                }
+                
+                else if (map[row, column] == desCode) destructiblesTilemap.SetTile(position, row == 10 ? desTop : desMiddle);
+
                 else if (map[row, column] == backgroundCode)
                 {
-                    if (gameManager.currentLevel >= 3 || gameManager.currentLevel <= 5) backgroundTilemap.SetTile(position, background);
-                    else if (row == 10) backgroundTilemap.SetTile(position, indesShadow);
+                    if (row == 10)
+                    {
+                        if (gameManager.level >= 3 && gameManager.level <= 5) tile = Background;
+                        else tile = IndesShadow;
+                    }
                     else
                     {
-                        int lowerPosition = map[row + 1, column];
-                        Tile tile = lowerPosition == staticIndesCode || lowerPosition == randomIndesCode ? indesShadow : lowerPosition == desCode ? desShadow : background;
-                        backgroundTilemap.SetTile(position, tile);
+                        int upperPosition = map[row + 1, column];
+                        tile = upperPosition == staticIndesCode || upperPosition == randomIndesCode ? IndesShadow : upperPosition == desCode ? desShadow : Background;
                     }
+
+                    backgroundTilemap.SetTile(position, tile);
                 }
             }
         }

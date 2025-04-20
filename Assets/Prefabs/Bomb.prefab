@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2232420858023352404}
   - component: {fileID: 4744742962331105362}
   - component: {fileID: -1551618817071141361}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Bomb
   m_TagString: Bomb
   m_Icon: {fileID: 0}
@@ -165,7 +165,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91ae69d409ba26141a92cb424638fe76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  burnedDestructiblePrefab: {fileID: 6873171417023029284, guid: 9b3e636e66fbfe949af62cc6a04b2964, type: 3}
+  exitChance: 10
+  itemChance: 25
+  burnedDestructiblePrefabs:
+  - {fileID: 6873171417023029284, guid: 9b3e636e66fbfe949af62cc6a04b2964, type: 3}
+  - {fileID: 6873171417023029284, guid: 9b3e636e66fbfe949af62cc6a04b2964, type: 3}
+  - {fileID: 8329778382064989024, guid: 6b14416fce9372041a81d7ef250cdfb4, type: 3}
+  - {fileID: 8329778382064989024, guid: 6b14416fce9372041a81d7ef250cdfb4, type: 3}
+  - {fileID: 8329778382064989024, guid: 6b14416fce9372041a81d7ef250cdfb4, type: 3}
+  - {fileID: 2738131256966433843, guid: 0645ccc2ceddbba45847ad1951370adf, type: 3}
+  - {fileID: 2738131256966433843, guid: 0645ccc2ceddbba45847ad1951370adf, type: 3}
+  - {fileID: 2738131256966433843, guid: 0645ccc2ceddbba45847ad1951370adf, type: 3}
   explosionPrefabs:
   - {fileID: 6221169772235730163, guid: 406593e63a37af64680414687ae8868c, type: 3}
   - {fileID: 3267910226150306756, guid: 4dfd6133c5d4af34f98b1d49dffbf052, type: 3}
@@ -174,11 +184,8 @@ MonoBehaviour:
   - {fileID: 989836166064656486, guid: 7cae6ab1e74f08e43a8f19bfb7691be9, type: 3}
   - {fileID: 6748434969720434443, guid: 54cb4fac9af0375479dda592e22cff5c, type: 3}
   - {fileID: 1166450988693230905, guid: 792a986ddb790124cacbf5eec3cf2c02, type: 3}
-  explosionRadius: 1
   burntItemPrefab: {fileID: 4252803797851524340, guid: 377df61192ad06344aff7851096664c5, type: 3}
   exitPrefab: {fileID: 2880720619554434245, guid: fdcfede7683761a4b9158dbe1efb9c95, type: 3}
   itemPrefabs:
   - {fileID: 9110490266117718391, guid: 252761761c9a62244a58c94d157f200a, type: 3}
   - {fileID: 3862733744268846516, guid: f45ecff47df27d74ba035c77fcbb5b7d, type: 3}
-  backgroundTile: {fileID: 11400000, guid: 66adfa33a2afc6d47b378ff6917531f0, type: 2}
-  straightShadowTile: {fileID: 11400000, guid: bbf97de34e21eff41bb57a6373325efd, type: 2}

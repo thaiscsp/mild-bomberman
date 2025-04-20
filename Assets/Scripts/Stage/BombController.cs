@@ -7,18 +7,19 @@ public class BombController : MonoBehaviour
     PlayerOneController playerOneController;
     GameManager gameManager;
     SFXManager sfxManager;
-    SpriteRenderer spriteRenderer;
     Collider2D bombCollider;
-    int exitChance = 10;
-    int itemChance = 50;
-    int remainingRedLights;
+    TilemapController tilemapController;
+    public int exitChance = 10;
+    public int itemChance = 50;
+    int remainingDestructibles;
     public Vector3 BombPosition { get; set; }
 
     [Header("Bombs")]
     private float bombFuseTime = 2.9f;
 
     [Header("Explosion")]
-    public GameObject burnedDestructiblePrefab;
+    public GameObject[] burnedDestructiblePrefabs;
+    GameObject burnedDestructiblePrefab;
     public GameObject[] explosionPrefabs; // Up, down, left, right, middle, up middle, right middle
     private float explosionTime = 1.0f;
 
@@ -27,19 +28,13 @@ public class BombController : MonoBehaviour
     public GameObject exitPrefab;
     public GameObject[] itemPrefabs;
 
-    [Header("Tilemap")]
-    public Tile backgroundTile;
-    public Tile straightShadowTile;
-
     bool forceExplosion;
     bool ignitedAnotherBomb;
-    Coroutine destroyBombCoroutine;
 
     private void Start()
     {
-        Physics2D.queriesHitTriggers = true;
-
         RetrieveComponents();
+        burnedDestructiblePrefab = burnedDestructiblePrefabs[gameManager.level - 1];
         StartCoroutine(ShowExplosionMiddle(BombPosition, bombFuseTime));
     }
 
@@ -56,11 +51,10 @@ public class BombController : MonoBehaviour
     private void RetrieveComponents()
     {
         bombCollider = GetComponent<Collider2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
-
         gameManager = FindFirstObjectByType<GameManager>();
         playerOneController = FindFirstObjectByType<PlayerOneController>();
-        remainingRedLights = FindFirstObjectByType<TilemapController>().totalDes;
+        tilemapController = FindFirstObjectByType<TilemapController>();
+        remainingDestructibles = tilemapController.totalDes;
         sfxManager = FindFirstObjectByType<SFXManager>();
     }
 
@@ -69,6 +63,7 @@ public class BombController : MonoBehaviour
         yield return new WaitForSeconds(bombFuseTime);
         sfxManager.PlayClip(sfxManager.bombExplodes);
 
+        bombCollider.isTrigger = true;
         GameObject explosion = Instantiate(explosionPrefabs[4], bombPosition, Quaternion.identity);
         explosion.transform.SetParent(playerOneController.explosionsParent.transform);
         StartCoroutine(DestroyExplosion(explosion));
@@ -83,7 +78,7 @@ public class BombController : MonoBehaviour
     private void ShowExplosionRadius(Vector2 bombPosition)
     {
         Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
-        int layers = LayerMask.GetMask("Bomb", "Building", "Exit", "Explosion", "Item", "RedLight");
+        int layers = LayerMask.GetMask("Bomb", "Destructible", "Indestructible", "Exit", "Explosion", "Item");
 
         for (int i = 0; i < directions.Length; i++)
         {
@@ -122,7 +117,7 @@ public class BombController : MonoBehaviour
                 else // If there is...
                 {
                     // Performs an action according to the detected obstacle
-                    if (collider.gameObject.layer == LayerMask.NameToLayer("RedLight"))
+                    if (collider.gameObject.layer == LayerMask.NameToLayer("Destructible"))
                     {
                         StartCoroutine(DestroyDestructible(explosionPosition));
                     } else if (collider.gameObject.layer == LayerMask.NameToLayer("Item"))
@@ -172,42 +167,34 @@ public class BombController : MonoBehaviour
     {
         bool forceExitSpawn = false;
         
-        // Removes the regular Red Light tile
+        // Removes the regular destructible tile
         Vector3Int tilePosition = new(Mathf.RoundToInt(explosionPosition.x) - 1, Mathf.RoundToInt(explosionPosition.y) - 1, 0);
-        playerOneController.redLightsTilemap.SetTile(tilePosition, null);
+        tilemapController.destructiblesTilemap.SetTile(tilePosition, null);
 
-        // Instantiates the burned Red Light on top
+        // Instantiates the burned destructible on top
         GameObject burnedDestructible = Instantiate(burnedDestructiblePrefab, explosionPosition, Quaternion.identity);
         yield return new WaitForSeconds(explosionTime);
         Destroy(burnedDestructible);
 
-        // If this is the last Red Light and the exit still hasn't spawned...
-        if (remainingRedLights == 1 && !gameManager.ExitSpawned)
-        {
-            forceExitSpawn = true;
-        }
+        // ta faltando coisa
+        Tile replacementTile = tilePosition.y == 10 ? tilemapController.IndesShadow : tilemapController.Background;
+        tilemapController.backgroundTilemap.SetTile(tilePosition, replacementTile);
+
+        // If this is the last destructible and the exit still hasn't spawned...
+        if (remainingDestructibles == 1 && !gameManager.ExitSpawned) forceExitSpawn = true;
 
         bool exitJustSpawned = SpawnExit(explosionPosition, forceExitSpawn);
 
         // Spawns an item if an exit didn't spawn before
-        if (!exitJustSpawned)
-        {
-            SpawnItem(explosionPosition);
-        }
-   
-        // Removes the round shadow tile below the destructible
-        if (tilePosition.y > 0)
-        {
-            playerOneController.backgroundTilemap.SetTile(tilePosition - new Vector3Int(0, 1), backgroundTile);
-        }
+        if (!exitJustSpawned) SpawnItem(explosionPosition);
 
-        // Reinserts the straight shadow tile if the destructible was in the first row
-        if (tilePosition.y == 10)
-        {
-            playerOneController.backgroundTilemap.SetTile(tilePosition, straightShadowTile);
-        }
+        // Removes the destructible shadow tile below the destructible
+        if (tilePosition.y > 0) playerOneController.backgroundTilemap.SetTile(tilePosition - new Vector3Int(0, 1), tilemapController.Background);
 
-        remainingRedLights--;
+        // Reinserts the indestructible shadow tile if the destructible was in the first row
+        if (tilePosition.y == 10) playerOneController.backgroundTilemap.SetTile(tilePosition, tilemapController.IndesShadow);
+
+        remainingDestructibles--;
     }
 
     private void SpawnItem(Vector2 position)

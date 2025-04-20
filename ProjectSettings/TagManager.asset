@@ -16,17 +16,17 @@ TagManager:
   - Enemy
   - Water
   - UI
-  - Building
   - Background
-  - RedLight
+  - Destructible
+  - Indestructible
   - Explosion
-  - Node
   - Bomb
   - Player
   - Item
   - Exit
-  - Destructible
-  - Indestructible
+  - 
+  - 
+  - 
   - 
   - 
   - 

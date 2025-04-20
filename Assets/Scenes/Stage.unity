@@ -460,16 +460,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f82ae94966d5d4b8ef568f65a5c078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  level: 1
   clock: {fileID: 72756669}
   timer: {fileID: 1073482056}
-  denkyunPrefab: {fileID: 5565818181199859654, guid: a68e74c0c63df2b49a67e6a4143a2817, type: 3}
-  puropenPrefab: {fileID: 7402928265262385689, guid: 906bcdcdcd5a54f41ba8b85e89f561d2, type: 3}
-  enemiesParent: {fileID: 1297625134}
-  deathExplosionPrefab: {fileID: 8761537062105196295, guid: a5364aa63af36c14b9fc216252869007, type: 3}
   livesDisplay: {fileID: 1235141536}
   scoreDisplay: {fileID: 77352694}
-  playerOneController: {fileID: 8689461122581320738}
-  currentLevel: 3
+  enemiesParent: {fileID: 1297625134}
+  puropenPrefab: {fileID: 7402928265262385689, guid: 906bcdcdcd5a54f41ba8b85e89f561d2, type: 3}
+  denkyunPrefab: {fileID: 5565818181199859654, guid: a68e74c0c63df2b49a67e6a4143a2817, type: 3}
+  starNutsPrefab: {fileID: 6415209665790271240, guid: a2a731790a034c7459f49a65782ef4aa, type: 3}
+  bakudaPrefab: {fileID: 0}
+  pakupaPrefab: {fileID: 0}
+  senshiyanPrefab: {fileID: 0}
+  bigaronPrefab: {fileID: 0}
+  deathExplosionPrefab: {fileID: 8761537062105196295, guid: a5364aa63af36c14b9fc216252869007, type: 3}
 --- !u!4 &298119385
 Transform:
   m_ObjectHideFlags: 0
@@ -506,14 +510,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f96b41b2ca7a46d4daec79e1d0c8ef44, type: 3}
   - {fileID: 21300000, guid: f96b41b2ca7a46d4daec79e1d0c8ef44, type: 3}
   - {fileID: 21300000, guid: f96b41b2ca7a46d4daec79e1d0c8ef44, type: 3}
+  - {fileID: 21300000, guid: f96b41b2ca7a46d4daec79e1d0c8ef44, type: 3}
   levelDisplay: {fileID: 1357035549}
   scenario: {fileID: 436117924}
-  backgroundTilemap: {fileID: 1403637025}
-  destructiblesTilemap: {fileID: 320906109}
-  indestructiblesTilemap: {fileID: 557185658}
-  townBorderTilemap: {fileID: 1840169151}
-  villageBorderTilemap: {fileID: 1595381003}
-  castleBorderTilemap: {fileID: 1575916910}
 --- !u!1 &320906106
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,7 +525,7 @@ GameObject:
   - component: {fileID: 320906109}
   - component: {fileID: 320906108}
   - component: {fileID: 320906110}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Destructibles
   m_TagString: RedLight
   m_Icon: {fileID: 0}
@@ -871,18 +870,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 71e665b52b404d741bd37eedc0416fd2, type: 2}
   - {fileID: 11400000, guid: 71e665b52b404d741bd37eedc0416fd2, type: 2}
   - {fileID: 11400000, guid: 71e665b52b404d741bd37eedc0416fd2, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: ff8db72fd0b5a0a4da291366e5d21552, type: 2}
+  - {fileID: 11400000, guid: ff8db72fd0b5a0a4da291366e5d21552, type: 2}
+  - {fileID: 11400000, guid: ff8db72fd0b5a0a4da291366e5d21552, type: 2}
   desMiddleTiles:
   - {fileID: 11400000, guid: 92a91c57ddf58984e92107b990dce217, type: 2}
   - {fileID: 11400000, guid: 92a91c57ddf58984e92107b990dce217, type: 2}
   - {fileID: 11400000, guid: 2a296fadc15db174c83701a080442d69, type: 2}
   - {fileID: 11400000, guid: 2a296fadc15db174c83701a080442d69, type: 2}
   - {fileID: 11400000, guid: 2a296fadc15db174c83701a080442d69, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: ff8db72fd0b5a0a4da291366e5d21552, type: 2}
+  - {fileID: 11400000, guid: ff8db72fd0b5a0a4da291366e5d21552, type: 2}
+  - {fileID: 11400000, guid: ff8db72fd0b5a0a4da291366e5d21552, type: 2}
   backgroundTiles:
   - {fileID: 11400000, guid: 66adfa33a2afc6d47b378ff6917531f0, type: 2}
   - {fileID: 11400000, guid: 66adfa33a2afc6d47b378ff6917531f0, type: 2}
@@ -1113,7 +1112,7 @@ GameObject:
   - component: {fileID: 557185658}
   - component: {fileID: 557185657}
   - component: {fileID: 557185659}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: Indestructibles
   m_TagString: Building
   m_Icon: {fileID: 0}
@@ -3107,7 +3106,7 @@ GameObject:
   - component: {fileID: 1403637023}
   - component: {fileID: 1403637025}
   - component: {fileID: 1403637024}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4940,7 +4939,7 @@ GameObject:
   - component: {fileID: 1575916910}
   - component: {fileID: 1575916912}
   - component: {fileID: 1575916911}
-  m_Layer: 16
+  m_Layer: 8
   m_Name: Castle Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5951,7 +5950,7 @@ GameObject:
   - component: {fileID: 1595381003}
   - component: {fileID: 1595381005}
   - component: {fileID: 1595381004}
-  m_Layer: 16
+  m_Layer: 8
   m_Name: Village Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6975,7 +6974,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1720978542
 Transform:
   m_ObjectHideFlags: 0
@@ -7198,7 +7197,7 @@ GameObject:
   - component: {fileID: 1840169151}
   - component: {fileID: 1840169153}
   - component: {fileID: 1840169152}
-  m_Layer: 16
+  m_Layer: 8
   m_Name: Town Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8358,7 +8357,7 @@ GameObject:
   - component: {fileID: 8689461122581320736}
   - component: {fileID: 5261438918868482391}
   - component: {fileID: 8689461122581320738}
-  m_Layer: 12
+  m_Layer: 11
   m_Name: Player One
   m_TagString: Player
   m_Icon: {fileID: 0}

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4950166691860406534}
   - component: {fileID: 6629672282634611732}
   - component: {fileID: 6653926525705972974}
-  m_Layer: 13
+  m_Layer: 12
   m_Name: Bomb Up
   m_TagString: Item
   m_Icon: {fileID: 0}

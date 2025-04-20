@@ -104,7 +104,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -131,7 +131,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -148,7 +148,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.25178576}
+  m_Offset: {x: 0, y: -0.24}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -159,7 +159,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.5073757, y: 0.6821432}
+  m_Size: {x: 0.4348202, y: 0.8188554}
   m_EdgeRadius: 0
 --- !u!95 &1994161675347165944
 Animator:
@@ -194,10 +194,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3505f63924975341a3c4aed684be512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  raySize: 1
+  topRaySize: 0.55
+  bottomRaySize: 0.55
+  leftRaySize: 0.55
+  rightRaySize: 0.55
   speed: 1.5
   lives: 2
   points: 400
+  hasDirectionalAnimations: 0
 --- !u!114 &8185454410974680316
 MonoBehaviour:
   m_ObjectHideFlags: 0

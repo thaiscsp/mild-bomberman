@@ -9,7 +9,7 @@ public class DenkyunController : MonoBehaviour
     {
         enemyController = GetComponent<EnemyController>();
 
-        currentDirection = enemyController.direction;
+        currentDirection = enemyController.Direction;
     }
 
     void Update()
@@ -19,10 +19,10 @@ public class DenkyunController : MonoBehaviour
 
     private void ResetAnimation()
     {
-        if (currentDirection != enemyController.direction)
+        if (currentDirection != enemyController.Direction)
         {
-            currentDirection = enemyController.direction;
-            enemyController.animator.SetTrigger("move");
+            currentDirection = enemyController.Direction;
+            enemyController.Animator.SetTrigger("move");
         }
     }
 
