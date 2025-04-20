@@ -22,8 +22,9 @@ public class TilemapController : MonoBehaviour
     AnimatedTile desTop, desMiddle;
 
     public Tile Background { get; private set; }
+    public Tile Indes { get; private set; }
     public Tile IndesShadow { get; private set; }
-    Tile indes, desShadow;
+    public Tile DesShadow { get; private set; }
 
     [Header("Animated Tiles")]
     public AnimatedTile[] desTopTiles;
@@ -43,10 +44,14 @@ public class TilemapController : MonoBehaviour
     public Tilemap villageBorderTilemap;
     public Tilemap castleBorderTilemap;
 
+    Vector3 startPosition = new(0.5f, -12, 0);
+
     private void Awake()
     {
         gameManager = FindFirstObjectByType<GameManager>();
 
+        ResetPosition();
+        ClearInnerTilemaps();
         SetTileVariables();
         EnableBorder();
         SetAnimatedTileSpeeds(0);
@@ -60,12 +65,12 @@ public class TilemapController : MonoBehaviour
 
         Background = backgroundTiles[index];
 
-        indes = indesTiles[index];
+        Indes = indesTiles[index];
         IndesShadow = indesShadowTiles[index];
         
         desTop = desTopTiles[index];
         desMiddle = desMiddleTiles[index];
-        desShadow = desShadowTiles[index];
+        DesShadow = desShadowTiles[index];
     }
 
     private void EnableBorder()
@@ -132,8 +137,13 @@ public class TilemapController : MonoBehaviour
         map = new int[totalRows, totalColumns];
 
         CreateBaseMap();
-        PlaceIndestructiblesCodes();
-        PlaceDestructiblesCodes();
+
+        if (gameManager.level < 8) // Map is static at level 8
+        {
+            PlaceIndestructiblesCodes();
+            PlaceDestructiblesCodes();
+        }
+
         CheckForInaccessibleAreas();
     }
 
@@ -216,29 +226,37 @@ public class TilemapController : MonoBehaviour
 
     private void CheckForInaccessibleAreas()
     {
-        // Total tiles = 11 * 13, static indestructibles = 30, random indestructibles = 8
-        // 11 * 13 - 30 - 8 = 105
-        int expectedToVisit = 105;
-        List<Vector2Int> visitedPositions = new();
-        Stack<Vector2Int> positionsToVisit = new();
-        positionsToVisit.Push(Vector2Int.zero);
+        bool canPlaceTiles = false;
 
-        while (positionsToVisit.Count > 0)
+        if (gameManager.level == 8) canPlaceTiles = true; // Because the map is static, there is no need to check for inaccessible areas
+        else
         {
-            Vector2Int currentPos = positionsToVisit.Pop();
+            // Total tiles = 11 * 13, static indestructibles = 30, random indestructibles = 8
+            // 11 * 13 - 30 - 8 = 105
+            int expectedToVisit = 105;
+            List<Vector2Int> visitedPositions = new();
+            Stack<Vector2Int> positionsToVisit = new();
+            positionsToVisit.Push(Vector2Int.zero);
 
-            CheckAndPushPosition(visitedPositions, positionsToVisit, new(currentPos.x + 1, currentPos.y)); // Up
-            CheckAndPushPosition(visitedPositions, positionsToVisit, new(currentPos.x - 1, currentPos.y)); // Down
-            CheckAndPushPosition(visitedPositions, positionsToVisit, new(currentPos.x, currentPos.y - 1)); // Left
-            CheckAndPushPosition(visitedPositions, positionsToVisit, new(currentPos.x, currentPos.y + 1)); // Right
-        }
+            while (positionsToVisit.Count > 0)
+            {
+                Vector2Int currentPos = positionsToVisit.Pop();
 
-        if (visitedPositions.Count < expectedToVisit)
-        {
-            print("Regenerating tilemaps. Inaccessible tiles: " + (expectedToVisit - visitedPositions.Count));
-            CreateMap();
+                CheckAndPushPosition(visitedPositions, positionsToVisit, new(currentPos.x + 1, currentPos.y)); // Up
+                CheckAndPushPosition(visitedPositions, positionsToVisit, new(currentPos.x - 1, currentPos.y)); // Down
+                CheckAndPushPosition(visitedPositions, positionsToVisit, new(currentPos.x, currentPos.y - 1)); // Left
+                CheckAndPushPosition(visitedPositions, positionsToVisit, new(currentPos.x, currentPos.y + 1)); // Right
+            }
+
+            if (visitedPositions.Count < expectedToVisit)
+            {
+                print("Regenerating tilemaps. Inaccessible tiles: " + (expectedToVisit - visitedPositions.Count));
+                CreateMap();
+            }
+            else canPlaceTiles = true;
         }
-        else PlaceInnerTiles();
+            
+        if (canPlaceTiles) PlaceInnerTiles();
     }
 
     private void PlaceInnerTiles()
@@ -268,7 +286,7 @@ public class TilemapController : MonoBehaviour
                 }
 
                 
-                else if (map[row, column] == staticIndesCode || map[row, column] == randomIndesCode) indestructiblesTilemap.SetTile(position, indes);
+                else if (map[row, column] == staticIndesCode || map[row, column] == randomIndesCode) indestructiblesTilemap.SetTile(position, Indes);
                 
                 else if (map[row, column] == desCode) destructiblesTilemap.SetTile(position, row == 10 ? desTop : desMiddle);
 
@@ -282,7 +300,7 @@ public class TilemapController : MonoBehaviour
                     else
                     {
                         int upperPosition = map[row + 1, column];
-                        tile = upperPosition == staticIndesCode || upperPosition == randomIndesCode ? IndesShadow : upperPosition == desCode ? desShadow : Background;
+                        tile = upperPosition == staticIndesCode || upperPosition == randomIndesCode ? IndesShadow : upperPosition == desCode ? DesShadow : Background;
                     }
 
                     backgroundTilemap.SetTile(position, tile);
@@ -298,6 +316,18 @@ public class TilemapController : MonoBehaviour
             positionsToVisit.Push(positionToVisit);
             visitedPositions.Add(positionToVisit);
         }
+    }
+
+    private void ResetPosition()
+    {
+        transform.position = startPosition;
+    }
+
+    private void ClearInnerTilemaps()
+    {
+        backgroundTilemap.ClearAllTiles();
+        destructiblesTilemap.ClearAllTiles();
+        indestructiblesTilemap.ClearAllTiles();
     }
 
 }

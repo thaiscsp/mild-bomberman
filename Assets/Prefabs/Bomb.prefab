@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exitChance: 10
-  itemChance: 25
+  itemChance: 100
   burnedDestructiblePrefabs:
   - {fileID: 6873171417023029284, guid: 9b3e636e66fbfe949af62cc6a04b2964, type: 3}
   - {fileID: 6873171417023029284, guid: 9b3e636e66fbfe949af62cc6a04b2964, type: 3}
@@ -189,3 +189,10 @@ MonoBehaviour:
   itemPrefabs:
   - {fileID: 9110490266117718391, guid: 252761761c9a62244a58c94d157f200a, type: 3}
   - {fileID: 3862733744268846516, guid: f45ecff47df27d74ba035c77fcbb5b7d, type: 3}
+  - {fileID: 2569966539761538824, guid: fd62155fadd5e4241a9a416d888677e9, type: 3}
+  - {fileID: 5579335277246389887, guid: a00369e5d6145c6479e3d85c041f58c4, type: 3}
+  - {fileID: 1285574083365560161, guid: 894d025fd99fbfd45a0de46ec13ac5f1, type: 3}
+  - {fileID: 6459378880540917347, guid: 69c322a457bf5e64484818c6d95b5268, type: 3}
+  - {fileID: 4438157684240273453, guid: c5f36abc29e0ed146a0c7346f2b6be64, type: 3}
+  - {fileID: 1622513764397735100, guid: 3d4a407b4f2f8f341859d26d2c178a0c, type: 3}
+  - {fileID: 4523291913515826298, guid: efaa3ae06a114ea45b88d6ac6a4e2d0f, type: 3}

@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: test_0
+      name: SenshiyanWalkSide_0
       rect:
         serializedVersion: 2
         x: 7
@@ -118,7 +118,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: test_1
+      name: SenshiyanWalkSide_1
       rect:
         serializedVersion: 2
         x: 33
@@ -1513,6 +1513,8 @@ TextureImporter:
       PakupaWalkUp_1: -1671971547
       PakupaWalkUp_2: -1951816930
       PakupaWalkUp_3: 392893708
+      SenshiyanWalkSide_0: -353298082
+      SenshiyanWalkSide_1: 371608615
       StarNutsWalkDown_0: -1857090502
       StarNutsWalkDown_1: -729696520
       StarNutsWalkDown_2: 931163269
@@ -1538,8 +1540,6 @@ TextureImporter:
       StarNutsWalkUp_6: -1670827276
       StarNutsWalkUp_7: 1414109570
       StarNutsWalkUp_8: 2047817545
-      test_0: -353298082
-      test_1: 371608615
       test_10: -2098072483
       test_11: -1936367211
       test_12: 1470231713

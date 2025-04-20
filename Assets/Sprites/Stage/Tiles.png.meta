@@ -202,111 +202,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RedTimeBomb_0
-      rect:
-        serializedVersion: 2
-        x: 339
-        y: 600
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 307da9a48b4d56e4c97e351762c21d33
-      internalID: 2026056165
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RedTimeBomb_1
-      rect:
-        serializedVersion: 2
-        x: 356
-        y: 600
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9e98a8f6be45f3d47b55422b10634412
-      internalID: 1770308956
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RedBomb_0
-      rect:
-        serializedVersion: 2
-        x: 254
-        y: 583
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 46d7918547cbe6742aae058833b1fe86
-      internalID: 1590419305
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RedBomb_1
-      rect:
-        serializedVersion: 2
-        x: 271
-        y: 583
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5b0dffdf97914e045a4c0ecede998efa
-      internalID: -1348797372
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: RedBomb_2
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 583
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6ab840cc5d5a5f041b2bbb74417a49cd
-      internalID: -1185513502
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: RedLightBurn_0
       rect:
         serializedVersion: 2
@@ -428,153 +323,6 @@ TextureImporter:
       bones: []
       spriteID: 8620a560f5f9d8f408720db5bef974a2
       internalID: -885895868
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ItemBurn_0
-      rect:
-        serializedVersion: 2
-        x: 254
-        y: 498
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: de875f1622d7bc240a3370525faf9082
-      internalID: 1621245750
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ItemBurn_1
-      rect:
-        serializedVersion: 2
-        x: 271
-        y: 498
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c2be1523c33a1a04aa1a32bb9792115e
-      internalID: -2134479397
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ItemBurn_2
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 498
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 77447ddfcc463214ca4e20bb96d6428c
-      internalID: -565180254
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ItemBurn_3
-      rect:
-        serializedVersion: 2
-        x: 305
-        y: 498
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ac40eef8ec3751844ab3aaefe0fe6049
-      internalID: 1496571478
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ItemBurn_4
-      rect:
-        serializedVersion: 2
-        x: 322
-        y: 498
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2077467cd0508e345afe6005e42efe52
-      internalID: 339127544
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ItemBurn_5
-      rect:
-        serializedVersion: 2
-        x: 339
-        y: 498
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0b459a9577d03d04bb874ce93c71a24a
-      internalID: -1021172061
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ItemBurn_6
-      rect:
-        serializedVersion: 2
-        x: 356
-        y: 498
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 313c124ee7aa50d4986b6e719fb78a89
-      internalID: -116233547
       vertices: []
       indices: 
       edges: []
@@ -2478,7 +2226,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2499,7 +2247,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2520,7 +2268,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2541,7 +2289,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2562,7 +2310,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2583,7 +2331,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -2682,13 +2430,13 @@ TextureImporter:
       FireUp_3: -636159997
       FireUp_4: 642312262
       House: 1493991517
-      ItemBurn_0: 1621245750
-      ItemBurn_1: -2134479397
-      ItemBurn_2: -565180254
-      ItemBurn_3: 1496571478
-      ItemBurn_4: 339127544
-      ItemBurn_5: -1021172061
-      ItemBurn_6: -116233547
+      ItemBurn_01: 1621245750
+      ItemBurn_11: -2134479397
+      ItemBurn_21: -565180254
+      ItemBurn_31: 1496571478
+      ItemBurn_41: 339127544
+      ItemBurn_51: -1021172061
+      ItemBurn_61: -116233547
       Obstacle: -1302176180
       RedBomb_0: 1590419305
       RedBomb_1: -1348797372

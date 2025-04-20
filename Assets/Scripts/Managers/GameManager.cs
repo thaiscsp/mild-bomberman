@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
     Animator timerAnimator;
     LevelIntroManager levelIntroManager;
     PlayerOneController playerOneController;
+    public GameObject scenario;
     TilemapController tilemapController;
 
     public bool ExitSpawned { get; set; }
@@ -46,8 +48,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
-        // DontDestroyOnLoad(playerOneController.gameObject);
+        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(scenario);
     }
 
     private void Start()
@@ -56,7 +58,7 @@ public class GameManager : MonoBehaviour
         timerAnimator = timer.GetComponent<Animator>();
         playerOneController = FindFirstObjectByType<PlayerOneController>();
         levelIntroManager = FindFirstObjectByType<LevelIntroManager>();
-        tilemapController = FindFirstObjectByType<TilemapController>();
+        tilemapController = scenario.GetComponent<TilemapController>();
 
         playerOneController.gameObject.SetActive(false);
 
@@ -179,6 +181,7 @@ public class GameManager : MonoBehaviour
     {
         startTime = Time.time;
         countElapsedTime = true;
+        ExitSpawned = false;
 
         tilemapController.SetAnimatedTileSpeeds(7);
 
@@ -240,8 +243,8 @@ public class GameManager : MonoBehaviour
 
     public void SpawnEnemies(GameObject enemyPrefab, int totalEnemies, bool wasSpawnedFromExit, Vector3? forcedPosition = null)
     {
-        Vector2 playerStartPosition = new(1, 11);
-        Vector3 offset = new(0, 0.25f, 0); // Trying to adjust the position to the Puropen's middle
+        Vector3 playerStartPosition = new(1, 11, 0);
+        Vector3 offset = new(0, 0.3f, 0); // So that the enemy won't be stuck upon instantiation (by colliding with one of the tilemaps)
         Vector3 position = Vector3.zero;
         List<Vector3> usedPositions = new();
         bool positionChosen = false;
@@ -255,7 +258,7 @@ public class GameManager : MonoBehaviour
                 int column = Random.Range(1, tilemapController.totalColumns + 1);
                 Vector3 randomPosition = new(column, row);
 
-                if (!usedPositions.Contains(randomPosition) && tilemapController.map[row - 1, column - 1] == tilemapController.backgroundCode)
+                if (!usedPositions.Contains(randomPosition) && tilemapController.map[row - 1, column - 1] == tilemapController.backgroundCode && randomPosition != playerStartPosition)
                 {
                     position = randomPosition;
                     positionChosen = true;
@@ -272,10 +275,7 @@ public class GameManager : MonoBehaviour
                 enemy.GetComponent<EnemyController>().WasSpawnedFromExit = wasSpawnedFromExit;
                 enemy.transform.SetParent(enemiesParent.transform);
 
-                if (wasSpawnedFromExit)
-                {
-                    StartCoroutine(ActivateIFrame(enemy, 100));
-                }
+                if (wasSpawnedFromExit) StartCoroutine(ActivateIFrame(enemy, 100));
 
                 usedPositions.Add(position); // To prevent the same position from being used for different enemies
                 EnemiesRemaining++;
@@ -288,7 +288,7 @@ public class GameManager : MonoBehaviour
 
     public void GoToNextLevel()
     {
-        if (level < 3)
+        if (level < 8)
         {
             level++;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);

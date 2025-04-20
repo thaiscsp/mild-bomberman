@@ -5,7 +5,14 @@ public class ItemController : MonoBehaviour
     public enum ItemName
     {
         BombUp,
-        FireUp
+        FireUp,
+        SpeedUp,
+        Kick,
+        Vest,
+        BlockPass,
+        RemoteControl,
+        Time,
+        OneUp
     };
     public ItemName itemName;
     public int points;
@@ -33,6 +40,14 @@ public class ItemController : MonoBehaviour
                     break;
                 case ItemName.FireUp:
                     playerOneController.explosionRadius++;
+                    break;
+
+                case ItemName.BlockPass:
+                    playerOneController.GetComponent<Collider2D>().excludeLayers |= LayerMask.GetMask("Destructible");
+                    break;
+
+                case ItemName.OneUp:
+                    if (playerOneController.Lives < 9) playerOneController.Lives++;
                     break;
             }
 

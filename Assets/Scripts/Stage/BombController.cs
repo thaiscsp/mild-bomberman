@@ -20,7 +20,7 @@ public class BombController : MonoBehaviour
     [Header("Explosion")]
     public GameObject[] burnedDestructiblePrefabs;
     GameObject burnedDestructiblePrefab;
-    public GameObject[] explosionPrefabs; // Up, down, left, right, middle, up middle, right middle
+    public GameObject[] explosionPrefabs; // Order in array: up, down, left, right, middle, up middle, right middle
     private float explosionTime = 1.0f;
 
     [Header("Items")]
@@ -63,7 +63,7 @@ public class BombController : MonoBehaviour
         yield return new WaitForSeconds(bombFuseTime);
         sfxManager.PlayClip(sfxManager.bombExplodes);
 
-        bombCollider.isTrigger = true;
+        bombCollider.enabled = false; // So that the enemy won't be stopped from walking after spawning from the exit (where the bomb still is after exploding)
         GameObject explosion = Instantiate(explosionPrefabs[4], bombPosition, Quaternion.identity);
         explosion.transform.SetParent(playerOneController.explosionsParent.transform);
         StartCoroutine(DestroyExplosion(explosion));
@@ -166,19 +166,13 @@ public class BombController : MonoBehaviour
     private IEnumerator DestroyDestructible(Vector2 explosionPosition)
     {
         bool forceExitSpawn = false;
-        
-        // Removes the regular destructible tile
-        Vector3Int tilePosition = new(Mathf.RoundToInt(explosionPosition.x) - 1, Mathf.RoundToInt(explosionPosition.y) - 1, 0);
-        tilemapController.destructiblesTilemap.SetTile(tilePosition, null);
 
-        // Instantiates the burned destructible on top
+        ReplaceTiles(explosionPosition);
+
+        // Instantiates the burned destructible
         GameObject burnedDestructible = Instantiate(burnedDestructiblePrefab, explosionPosition, Quaternion.identity);
         yield return new WaitForSeconds(explosionTime);
         Destroy(burnedDestructible);
-
-        // ta faltando coisa
-        Tile replacementTile = tilePosition.y == 10 ? tilemapController.IndesShadow : tilemapController.Background;
-        tilemapController.backgroundTilemap.SetTile(tilePosition, replacementTile);
 
         // If this is the last destructible and the exit still hasn't spawned...
         if (remainingDestructibles == 1 && !gameManager.ExitSpawned) forceExitSpawn = true;
@@ -188,13 +182,25 @@ public class BombController : MonoBehaviour
         // Spawns an item if an exit didn't spawn before
         if (!exitJustSpawned) SpawnItem(explosionPosition);
 
-        // Removes the destructible shadow tile below the destructible
-        if (tilePosition.y > 0) playerOneController.backgroundTilemap.SetTile(tilePosition - new Vector3Int(0, 1), tilemapController.Background);
-
-        // Reinserts the indestructible shadow tile if the destructible was in the first row
-        if (tilePosition.y == 10) playerOneController.backgroundTilemap.SetTile(tilePosition, tilemapController.IndesShadow);
-
         remainingDestructibles--;
+    }
+
+    private void ReplaceTiles(Vector2 explosionPosition)
+    {
+        Vector3Int tilePosition = new(Mathf.RoundToInt(explosionPosition.x) - 1, Mathf.RoundToInt(explosionPosition.y) - 1, 0);
+
+        // Removes the destructible tile
+        tilemapController.destructiblesTilemap.SetTile(tilePosition, null);
+
+        // Removes the destructible shadow tile below the destructible
+        if (tilePosition.y > 0) tilemapController.backgroundTilemap.SetTile(tilePosition - new Vector3Int(0, 1), tilemapController.Background);
+
+        // Replaces the tile where the destructible was burnt (according to what is on top)
+        bool hasDesOnTop = tilemapController.destructiblesTilemap.GetTile(tilePosition + new Vector3Int(0, 1)) != null;
+        bool hasIndesOnTop = tilemapController.indestructiblesTilemap.GetTile(tilePosition + new Vector3Int(0, 1)) != null;
+
+        Tile tile = hasDesOnTop ? tilemapController.DesShadow : hasIndesOnTop && (tilePosition.y < 10 || (tilePosition.y == 10 && (gameManager.level < 3 || gameManager.level > 5))) ? tilemapController.IndesShadow : tilemapController.Background;
+        tilemapController.backgroundTilemap.SetTile(tilePosition, tile);
     }
 
     private void SpawnItem(Vector2 position)
@@ -222,16 +228,5 @@ public class BombController : MonoBehaviour
 
         return exitJustSpawned;
     }
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    print(collision.gameObject.name);
-    //    if (collision.gameObject.layer == LayerMask.NameToLayer("Explosion"))
-    //    {
-    //        print("hit by another bomb");
-    //        StopAllCoroutines();
-    //        StartCoroutine(ShowExplosionMiddle(BombPosition));
-    //    }
-    //}
 
 }

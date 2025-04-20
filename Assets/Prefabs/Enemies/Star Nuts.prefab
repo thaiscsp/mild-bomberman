@@ -130,7 +130,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -195,8 +195,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   topRaySize: 0.5
   bottomRaySize: 0.5
-  leftRaySize: 0.5
-  rightRaySize: 0.5
+  leftRaySize: 0.55
+  rightRaySize: 0.55
   speed: 1.5
   lives: 1
   points: 100

@@ -460,7 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f82ae94966d5d4b8ef568f65a5c078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
+  level: 3
   clock: {fileID: 72756669}
   timer: {fileID: 1073482056}
   livesDisplay: {fileID: 1235141536}
@@ -474,6 +474,7 @@ MonoBehaviour:
   senshiyanPrefab: {fileID: 0}
   bigaronPrefab: {fileID: 0}
   deathExplosionPrefab: {fileID: 8761537062105196295, guid: a5364aa63af36c14b9fc216252869007, type: 3}
+  scenario: {fileID: 436117924}
 --- !u!4 &298119385
 Transform:
   m_ObjectHideFlags: 0
@@ -6974,7 +6975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1720978542
 Transform:
   m_ObjectHideFlags: 0
@@ -8444,8 +8445,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0027689934, y: -0.30699635}
-  m_Size: {x: 0.82509136, y: 0.8860073}
+  m_Offset: {x: -0.0027689934, y: -0.27653837}
+  m_Size: {x: 0.82509136, y: 0.82509136}
   m_Direction: 0
 --- !u!114 &8689461122581320738
 MonoBehaviour:
@@ -8464,7 +8465,7 @@ MonoBehaviour:
   backgroundTilemap: {fileID: 1403637025}
   redLightsTilemap: {fileID: 320906109}
   speed: 3
-  explosionRadius: 1
+  explosionRadius: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
