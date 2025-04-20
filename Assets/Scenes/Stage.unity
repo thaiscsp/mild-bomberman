@@ -460,7 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f82ae94966d5d4b8ef568f65a5c078, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 3
+  level: 5
   clock: {fileID: 72756669}
   timer: {fileID: 1073482056}
   livesDisplay: {fileID: 1235141536}
@@ -469,8 +469,8 @@ MonoBehaviour:
   puropenPrefab: {fileID: 7402928265262385689, guid: 906bcdcdcd5a54f41ba8b85e89f561d2, type: 3}
   denkyunPrefab: {fileID: 5565818181199859654, guid: a68e74c0c63df2b49a67e6a4143a2817, type: 3}
   starNutsPrefab: {fileID: 6415209665790271240, guid: a2a731790a034c7459f49a65782ef4aa, type: 3}
-  bakudaPrefab: {fileID: 0}
-  pakupaPrefab: {fileID: 0}
+  bakudaPrefab: {fileID: 7517807859049290839, guid: 0bd08711cd71c774583449c9fda32696, type: 3}
+  pakupaPrefab: {fileID: 3231589193855668778, guid: c029bc41895c4e649a078e409d6a606b, type: 3}
   senshiyanPrefab: {fileID: 0}
   bigaronPrefab: {fileID: 0}
   deathExplosionPrefab: {fileID: 8761537062105196295, guid: a5364aa63af36c14b9fc216252869007, type: 3}
@@ -6975,7 +6975,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1720978542
 Transform:
   m_ObjectHideFlags: 0

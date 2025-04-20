@@ -1482,6 +1482,300 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: BakudaWalkSide_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 212
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 697762aa17932cf4d97aeff58b3d735c
+      internalID: 543458462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BakudaWalkSide_1
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 212
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e8325256a9330041b87feff9ffaf76d
+      internalID: 9813653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BakudaWalkSide_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 212
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a4334a7f887b6b43a92b35234b21303
+      internalID: -1908272561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BakudaWalkDown_0
+      rect:
+        serializedVersion: 2
+        x: 69
+        y: 212
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d993870717ce72d4b8319490412e494b
+      internalID: 1909933331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BakudaWalkDown_1
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 212
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7d61890c010a384098bea57e6140781
+      internalID: 681978037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BakudaWalkDown_2
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 212
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20582279ae5ffb1428c77cd6d6e30eb3
+      internalID: 1069581159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BakudaWalkUp_0
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 212
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6883fdf5ab3602f4fa2470938f1e5a14
+      internalID: -256805705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BakudaWalkUp_1
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 212
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8caae2756b148554b81a5e7d6643f721
+      internalID: 906563023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BakudaWalkUp_2
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 212
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58e00ac3c4decc9418f51bf241814e11
+      internalID: 802708124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BakudaIdle_0
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 212
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ab0155f40fd74c45ba05c1020d06aa5
+      internalID: -1098599401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BakudaIdle_1
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 212
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2805600a04962d347af2cdc4290aa0dd
+      internalID: 4358435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BakudaIdle_2
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 212
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bf3eb74ebf4e6248bc6aaf42aefde0c
+      internalID: 1562898004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BakudaPreExplode_0
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 212
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31b0c02a8aad3424a98b4570d90f1e6e
+      internalID: -343055192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BakudaPreExplode_1
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 212
+        width: 16
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9e25cc30093d2b499e5a86fb3e90e5a
+      internalID: 1358696748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1493,6 +1787,23 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      BakudaIdle_0: -1098599401
+      BakudaIdle_1: 4358435
+      BakudaIdle_2: 1562898004
+      BakudaPreExplode_0: -343055192
+      BakudaPreExplode_1: 1358696748
+      BakudaWalkDown_0: 1909933331
+      BakudaWalkDown_1: 681978037
+      BakudaWalkDown_2: 1069581159
+      BakudaWalkSide_0: 543458462
+      BakudaWalkSide_1: 9813653
+      BakudaWalkSide_2: -1908272561
+      BakudaWalkUp_0: -256805705
+      BakudaWalkUp_1: 906563023
+      BakudaWalkUp_2: 802708124
+      Enemies (edited)_10: 1148575670
+      Enemies (edited)_11: -981672835
+      Enemies (edited)_9: 1280625659
       PakupaWalkDown_0: 1281993317
       PakupaWalkDown_1: -1859576561
       PakupaWalkDown_2: 351328951

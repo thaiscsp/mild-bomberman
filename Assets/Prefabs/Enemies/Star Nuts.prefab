@@ -96,7 +96,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6415209665790271240}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -199,5 +199,5 @@ MonoBehaviour:
   rightRaySize: 0.55
   speed: 1.5
   lives: 1
-  points: 100
+  points: 200
   hasDirectionalAnimations: 1
