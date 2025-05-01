@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6404135352929107136}
   - component: {fileID: 1384807955430986725}
+  - component: {fileID: -7626921550394997678}
   - component: {fileID: 2232420858023352404}
   - component: {fileID: 4744742962331105362}
   - component: {fileID: -1551618817071141361}
@@ -75,8 +76,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: -1859533882, guid: 84ed8d1360491834ab9a4e12bc44ca49, type: 3}
+  m_SortingOrder: 3
+  m_Sprite: {fileID: 160391834, guid: 91055c9d6e0e4cf468125da7db8d5bcb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,6 +88,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &-7626921550394997678
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7685291055953376858}
+  m_BodyType: 2
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!61 &2232420858023352404
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -130,7 +158,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.75, y: 0.87}
   m_EdgeRadius: 0
 --- !u!95 &4744742962331105362
 Animator:
@@ -166,7 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exitChance: 10
-  itemChance: 100
+  itemChance: 40
   burnedDestructiblePrefabs:
   - {fileID: 6873171417023029284, guid: 9b3e636e66fbfe949af62cc6a04b2964, type: 3}
   - {fileID: 6873171417023029284, guid: 9b3e636e66fbfe949af62cc6a04b2964, type: 3}
@@ -178,8 +206,8 @@ MonoBehaviour:
   - {fileID: 2738131256966433843, guid: 0645ccc2ceddbba45847ad1951370adf, type: 3}
   explosionPrefabs:
   - {fileID: 6221169772235730163, guid: 406593e63a37af64680414687ae8868c, type: 3}
-  - {fileID: 3267910226150306756, guid: 4dfd6133c5d4af34f98b1d49dffbf052, type: 3}
-  - {fileID: 6363704112335872886, guid: 9e263db00bf73f64e8b824fa93424200, type: 3}
+  - {fileID: 6221169772235730163, guid: 102f1c693eef86f45881f5f88097488d, type: 3}
+  - {fileID: 7944417345904201047, guid: ee4edf927b59b004a97838d2e55573ca, type: 3}
   - {fileID: 7944417345904201047, guid: 2ddd73cc0b5bddf4fbc2aee93e2af2cc, type: 3}
   - {fileID: 989836166064656486, guid: 7cae6ab1e74f08e43a8f19bfb7691be9, type: 3}
   - {fileID: 6748434969720434443, guid: 54cb4fac9af0375479dda592e22cff5c, type: 3}
@@ -190,9 +218,4 @@ MonoBehaviour:
   - {fileID: 9110490266117718391, guid: 252761761c9a62244a58c94d157f200a, type: 3}
   - {fileID: 3862733744268846516, guid: f45ecff47df27d74ba035c77fcbb5b7d, type: 3}
   - {fileID: 2569966539761538824, guid: fd62155fadd5e4241a9a416d888677e9, type: 3}
-  - {fileID: 5579335277246389887, guid: a00369e5d6145c6479e3d85c041f58c4, type: 3}
-  - {fileID: 1285574083365560161, guid: 894d025fd99fbfd45a0de46ec13ac5f1, type: 3}
-  - {fileID: 6459378880540917347, guid: 69c322a457bf5e64484818c6d95b5268, type: 3}
-  - {fileID: 4438157684240273453, guid: c5f36abc29e0ed146a0c7346f2b6be64, type: 3}
-  - {fileID: 1622513764397735100, guid: 3d4a407b4f2f8f341859d26d2c178a0c, type: 3}
   - {fileID: 4523291913515826298, guid: efaa3ae06a114ea45b88d6ac6a4e2d0f, type: 3}

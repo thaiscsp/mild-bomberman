@@ -17,17 +17,17 @@ public class PlayerOneController : MonoBehaviour
     public Vector3 StartPosition { get; private set; } = new(1, 11.3f, 0);
     public bool Invincible { private get; set; }
     public bool Knockedout { get; set; }
-    public int Lives { get; set; }
-    public int Score { get; set; }
+    //public int Lives { get; set; }
+    //public int Score { get; set; }
     public int BombsRemaining { get; set; }
-    public int TotalBombs { get; set; } = 1;
+    // public int TotalBombs { get; set; } = 1;
 
     public GameObject bombPrefab;
     public GameObject explosionsParent;
     public Tilemap backgroundTilemap;
     public Tilemap redLightsTilemap;
-    public float speed = 3f;
-    public int explosionRadius = 1;
+    // public float speed = 3f;
+    // public int explosionRadius = 1;
 
     private void Awake()
     {
@@ -55,7 +55,7 @@ public class PlayerOneController : MonoBehaviour
             SpriteRenderer = GetComponent<SpriteRenderer>();
             sfxManager = FindFirstObjectByType<SFXManager>();
 
-            BombsRemaining = TotalBombs;
+            BombsRemaining = DataManager.instance.totalBombs;
         }
         else
         {
@@ -78,7 +78,7 @@ public class PlayerOneController : MonoBehaviour
 
     private void Move()
     {
-        rigidBody.velocity = speed * walkInputs;
+        rigidBody.velocity = DataManager.instance.speed * walkInputs;
     }
 
     private void SetAnimationParameters()

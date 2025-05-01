@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
-    public int level = 1;
+    // public int level = 1;
 
     // Inspector variables
     [Header("Stats Board")]
@@ -46,12 +45,6 @@ public class GameManager : MonoBehaviour
     bool countElapsedTime;
     bool timeLimitReached;
 
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-        DontDestroyOnLoad(scenario);
-    }
-
     private void Start()
     {
         clockAnimator = clock.GetComponent<Animator>();
@@ -62,7 +55,7 @@ public class GameManager : MonoBehaviour
 
         playerOneController.gameObject.SetActive(false);
 
-        SetInitialStats();
+        // SetInitialStats();
     }
 
     private void Update()
@@ -72,11 +65,11 @@ public class GameManager : MonoBehaviour
         CheckTimeLimit();
     }
 
-    private void SetInitialStats()
-    {
-        playerOneController.Lives = 5;
-        playerOneController.Score = 0;
-    }
+    //private void SetInitialStats()
+    //{
+    //    playerOneController.Lives = 5;
+    //    playerOneController.Score = 0;
+    //}
 
     public void CheckPlayerOneLives()
     {
@@ -85,7 +78,7 @@ public class GameManager : MonoBehaviour
             playerOneController.Knockedout = false;
             StartCoroutine(ActivateIFrame(playerOneController.gameObject, 100));
 
-            if (playerOneController.Lives > 0)
+            if (DataManager.instance.Lives > 0)
             {
                 Invoke("ReenablePlayerOne", 1);
             }
@@ -135,7 +128,7 @@ public class GameManager : MonoBehaviour
     {
         playerOneController.PlayerCollider.isTrigger = false;
         playerOneController.transform.position = playerOneController.StartPosition;
-        playerOneController.Lives--;
+        DataManager.instance.Lives--;
 
         clockAnimator.SetBool("tick", true);
         timerAnimator.Rebind();
@@ -156,8 +149,8 @@ public class GameManager : MonoBehaviour
 
     private void SetStatsUIText()
     {
-        livesDisplay.text = playerOneController.Lives.ToString();
-        scoreDisplay.text = playerOneController.Score.ToString();
+        livesDisplay.text = DataManager.instance.Lives.ToString();
+        scoreDisplay.text = DataManager.instance.Score.ToString();
     }
 
     private void CheckTimeLimit()
@@ -197,7 +190,7 @@ public class GameManager : MonoBehaviour
 
     private void ChooseEnemiesToSpawn()
     {
-        switch (level)
+        switch (DataManager.instance.level)
         {
             case 1:
                 SpawnEnemies(puropenPrefab, 3, false);
@@ -219,9 +212,10 @@ public class GameManager : MonoBehaviour
                 break;
 
             case 5:
-                SpawnEnemies(puropenPrefab, 2, false);
-                SpawnEnemies(bakudaPrefab, 3, false);
-                SpawnEnemies(pakupaPrefab, 1, false);
+                // SpawnEnemies(puropenPrefab, 2, false);
+                // SpawnEnemies(bakudaPrefab, 3, false);
+                // SpawnEnemies(pakupaPrefab, 1, false);
+                SpawnEnemies(pakupaPrefab, 3, false); // pra teste, apagar depois
                 break;
 
             case 6:
@@ -244,7 +238,7 @@ public class GameManager : MonoBehaviour
     public void SpawnEnemies(GameObject enemyPrefab, int totalEnemies, bool wasSpawnedFromExit, Vector3? forcedPosition = null)
     {
         Vector3 playerStartPosition = new(1, 11, 0);
-        Vector3 offset = new(0, 0.3f, 0); // So that the enemy won't be stuck upon instantiation (by colliding with one of the tilemaps)
+        Vector3 offset = new(0, 0.5f, 0); // So that the enemy won't be stuck upon instantiation (by colliding with one of the tilemaps)
         Vector3 position = Vector3.zero;
         List<Vector3> usedPositions = new();
         bool positionChosen = false;
@@ -288,9 +282,9 @@ public class GameManager : MonoBehaviour
 
     public void GoToNextLevel()
     {
-        if (level < 8)
+        if (DataManager.instance.level < 8)
         {
-            level++;
+            DataManager.instance.level++;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         } 
     }

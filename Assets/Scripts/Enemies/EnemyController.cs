@@ -7,34 +7,36 @@ public class EnemyController : MonoBehaviour
 {
     GameManager gameManager;
     GameObject deathExplosion;
-    PlayerOneController playerOneController;
-    Rigidbody2D rigidBody;
+    protected Rigidbody2D rigidBody;
 
     public Animator Animator { get; private set; }
     SpriteRenderer spriteRenderer;
-    public Vector2 Direction { get; private set; } = Vector2.down;
+    public Vector2 Direction { get; protected set; } = Vector2.down;
     public bool Invincible { private get; set; }
     public bool WasSpawnedFromExit { private get; set; }
 
-    public float topRaySize = 0.55f;
-    public float bottomRaySize = 0.55f;
-    public float leftRaySize = 0.55f;
-    public float rightRaySize = 0.55f;
+    public float verticalRaySize = 0.55f;
+    public float horizontalRaySize = 0.55f;
+    public float boxDistance = 0.5f;
     public float speed = 1.5f;
     public int lives = 1;
     public int points = 100;
     public bool hasDirectionalAnimations;
 
+    float creationTime;
+    bool positionAdjusted;
+
     private void Start()
     {
+        creationTime = Time.time;
+
         Animator = GetComponent<Animator>();
         gameManager = FindFirstObjectByType<GameManager>();
-        playerOneController = FindFirstObjectByType<PlayerOneController>();
         rigidBody = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private void Update()
+    public virtual void Update()
     {
         Move();
         ChangeDirection();
@@ -53,7 +55,7 @@ public class EnemyController : MonoBehaviour
         else rigidBody.velocity = Vector2.zero;
     }
 
-    private bool CanChangeDirection(RaycastHit2D[] enemyHit, RaycastHit2D generalHit)
+    public virtual bool CanChangeDirection(RaycastHit2D[] enemyHit, RaycastHit2D generalHit)
     {
         bool canChangeDirection = false;
 
@@ -64,15 +66,15 @@ public class EnemyController : MonoBehaviour
         return canChangeDirection;
     }
 
-    private void ChangeDirection()
+    public virtual void ChangeDirection()
     {
         Vector2[] directions = { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
         Vector3 colliderCenter = GetComponent<BoxCollider2D>().bounds.center;
         int layers = LayerMask.GetMask("Bomb", "Indestructible", "Destructible");
 
         // Detects if there is something in front of the enemy
-        RaycastHit2D[] enemyHit = Physics2D.BoxCastAll(colliderCenter, Vector2.one * 0.75f, 0, Direction, 0.5f, LayerMask.GetMask("Enemy"));
-        float raySize = Direction == Vector2.up ? topRaySize : Direction == Vector2.down ? bottomRaySize : Direction == Vector2.left ? leftRaySize : rightRaySize;
+        RaycastHit2D[] enemyHit = Physics2D.BoxCastAll(colliderCenter, Vector2.one * 0.75f, 0, Direction, boxDistance, LayerMask.GetMask("Enemy"));
+        float raySize = Direction == Vector2.up || Direction == Vector2.down ? verticalRaySize : horizontalRaySize;
         RaycastHit2D generalHit = Physics2D.Raycast(colliderCenter, Direction, raySize, layers);
 
         if (CanChangeDirection(enemyHit, generalHit)) // If there is...
@@ -141,7 +143,7 @@ public class EnemyController : MonoBehaviour
         deathExplosion = Instantiate(gameManager.deathExplosionPrefab, transform.position, Quaternion.identity);
 
         gameManager.EnemiesRemaining--;
-        playerOneController.Score += points;
+        DataManager.instance.Score += points;
 
         if (WasSpawnedFromExit)
         {
@@ -175,6 +177,16 @@ public class EnemyController : MonoBehaviour
     private void Flip()
     {
         if (hasDirectionalAnimations) spriteRenderer.flipX = Direction == Vector2.right;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!positionAdjusted && (Time.time - creationTime < 0.5f) && (collision.gameObject.layer == LayerMask.NameToLayer("Destructible") || collision.gameObject.layer == LayerMask.NameToLayer("Indestructible")))
+        {
+            positionAdjusted = true;
+            transform.position += new Vector3(0, 0.2f, 0);
+            print($"adjusted for {gameObject.name}");
+        }
     }
 
 }

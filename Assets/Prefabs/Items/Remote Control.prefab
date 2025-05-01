@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6735655012028626865}
   - component: {fileID: -8381016765531153137}
   - component: {fileID: -1011316499063144008}
+  - component: {fileID: 4637452449020097732}
   m_Layer: 12
   m_Name: Remote Control
   m_TagString: Untagged
@@ -145,3 +146,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: 6
   points: 300
+--- !u!95 &4637452449020097732
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4438157684240273453}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4fe143d4fc1069c4cb8ffea3a097c037, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

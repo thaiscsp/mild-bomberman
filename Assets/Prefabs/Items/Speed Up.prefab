@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4445140810873555117}
   - component: {fileID: 8071228562254362833}
   - component: {fileID: -3130143017610058306}
+  - component: {fileID: 5485378032379466610}
   m_Layer: 12
   m_Name: Speed Up
   m_TagString: Untagged
@@ -145,3 +146,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: 2
   points: 400
+--- !u!95 &5485378032379466610
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2569966539761538824}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0259944e50adb1844b1a1bd932545f59, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

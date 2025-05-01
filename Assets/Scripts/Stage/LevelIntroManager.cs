@@ -13,8 +13,12 @@ public class LevelIntroManager : MonoBehaviour
     public GameObject levelDisplay;
     public GameObject scenario;
 
+    float sceneStartTime;
+
     void Start()
     {
+        sceneStartTime = Time.time;
+
         gameManager = FindFirstObjectByType<GameManager>();
         tilemapController = FindFirstObjectByType<TilemapController>(); ;
 
@@ -36,7 +40,7 @@ public class LevelIntroManager : MonoBehaviour
 
     public void ChangeLevelDisplaySprite()
     {
-        levelDisplay.GetComponent<SpriteRenderer>().sprite = levelDisplaySprites[gameManager.level - 1];
+        levelDisplay.GetComponent<SpriteRenderer>().sprite = levelDisplaySprites[DataManager.instance.level - 1];
     }
 
     private IEnumerator MoveLevelDisplayRight(Vector3 position)
@@ -74,7 +78,7 @@ public class LevelIntroManager : MonoBehaviour
 
     private IEnumerator ChangeScenarioColor()
     {
-        float t = Mathf.Clamp01(Time.time * Time.deltaTime);
+        float t = Mathf.Clamp01((Time.time - sceneStartTime) * Time.deltaTime);
 
         while (t < 1)
         {
@@ -86,7 +90,7 @@ public class LevelIntroManager : MonoBehaviour
             else if (tilemapController.villageBorderTilemap.gameObject.activeSelf) tilemapController.villageBorderTilemap.color = Color.Lerp(tilemapController.villageBorderTilemap.color, Color.white, t);
             else if (tilemapController.castleBorderTilemap.gameObject.activeSelf) tilemapController.castleBorderTilemap.color = Color.Lerp(tilemapController.castleBorderTilemap.color, Color.white, t);
 
-            t = Mathf.Clamp01(Time.time * Time.deltaTime);
+            t = Mathf.Clamp01((Time.time - sceneStartTime) * Time.deltaTime);
             // print(t);
             yield return null;
         }

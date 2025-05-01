@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 public class TilemapController : MonoBehaviour
 {
     GameManager gameManager;
-
+    bool isVillageLevel;
     // des = Destructible
     // indes = Indestructible
     int startingPositionCode = 0;
@@ -48,6 +48,7 @@ public class TilemapController : MonoBehaviour
 
     private void Awake()
     {
+        isVillageLevel = DataManager.instance.level >= 3 && DataManager.instance.level <= 5;
         gameManager = FindFirstObjectByType<GameManager>();
 
         ResetPosition();
@@ -61,7 +62,7 @@ public class TilemapController : MonoBehaviour
     // To avoid accessing the arrays repeatedly
     private void SetTileVariables()
     {
-        int index = gameManager.level - 1;
+        int index = DataManager.instance.level - 1;
 
         Background = backgroundTiles[index];
 
@@ -75,8 +76,8 @@ public class TilemapController : MonoBehaviour
 
     private void EnableBorder()
     {
-        if (gameManager.level < 3) townBorderTilemap.gameObject.SetActive(true);
-        else if (gameManager.level < 6) villageBorderTilemap.gameObject.SetActive(true);
+        if (DataManager.instance.level < 3) townBorderTilemap.gameObject.SetActive(true);
+        else if (DataManager.instance.level < 6) villageBorderTilemap.gameObject.SetActive(true);
         else castleBorderTilemap.gameObject.SetActive(true);
     }
 
@@ -138,7 +139,7 @@ public class TilemapController : MonoBehaviour
 
         CreateBaseMap();
 
-        if (gameManager.level < 8) // Map is static at level 8
+        if (DataManager.instance.level < 8) // Map is static at level 8
         {
             PlaceIndestructiblesCodes();
             PlaceDestructiblesCodes();
@@ -228,7 +229,7 @@ public class TilemapController : MonoBehaviour
     {
         bool canPlaceTiles = false;
 
-        if (gameManager.level == 8) canPlaceTiles = true; // Because the map is static, there is no need to check for inaccessible areas
+        if (DataManager.instance.level == 8) canPlaceTiles = true; // Because the map is static, there is no need to check for inaccessible areas
         else
         {
             // Total tiles = 11 * 13, static indestructibles = 30, random indestructibles = 8
@@ -271,7 +272,7 @@ public class TilemapController : MonoBehaviour
 
                 if (tileCode == startingPositionCode)
                 {
-                    if (gameManager.level >= 3 && gameManager.level <= 5) tile = Background;
+                    if (isVillageLevel) tile = Background;
                     else tile = IndesShadow;
 
                     backgroundTilemap.SetTile(position, tile);
@@ -279,7 +280,7 @@ public class TilemapController : MonoBehaviour
                 
                 else if (tileCode == nearbyTileCode)
                 {
-                    if ((gameManager.level >= 3 && gameManager.level <= 5) || row == 9) tile = Background;
+                    if (isVillageLevel || row == 9) tile = Background;
                     else if (row == 10) tile = IndesShadow;
 
                     backgroundTilemap.SetTile(position, tile);
@@ -294,7 +295,7 @@ public class TilemapController : MonoBehaviour
                 {
                     if (row == 10)
                     {
-                        if (gameManager.level >= 3 && gameManager.level <= 5) tile = Background;
+                        if (isVillageLevel) tile = Background;
                         else tile = IndesShadow;
                     }
                     else

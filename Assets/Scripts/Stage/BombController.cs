@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Data.Common;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -34,7 +35,7 @@ public class BombController : MonoBehaviour
     private void Start()
     {
         RetrieveComponents();
-        burnedDestructiblePrefab = burnedDestructiblePrefabs[gameManager.level - 1];
+        burnedDestructiblePrefab = burnedDestructiblePrefabs[DataManager.instance.level - 1];
         StartCoroutine(ShowExplosionMiddle(BombPosition, bombFuseTime));
     }
 
@@ -82,7 +83,7 @@ public class BombController : MonoBehaviour
 
         for (int i = 0; i < directions.Length; i++)
         {
-            for (int j = 1; j <= playerOneController.explosionRadius; j++)
+            for (int j = 1; j <= DataManager.instance.explosionRadius; j++)
             {
                 GameObject explosionPrefab = null;
 
@@ -92,7 +93,7 @@ public class BombController : MonoBehaviour
 
                 if (collider == null) // If there isn't...
                 {
-                    if (j == playerOneController.explosionRadius)
+                    if (j == DataManager.instance.explosionRadius)
                     {
                         explosionPrefab = explosionPrefabs[i]; // Displays the corner explosions
                     }
@@ -199,7 +200,7 @@ public class BombController : MonoBehaviour
         bool hasDesOnTop = tilemapController.destructiblesTilemap.GetTile(tilePosition + new Vector3Int(0, 1)) != null;
         bool hasIndesOnTop = tilemapController.indestructiblesTilemap.GetTile(tilePosition + new Vector3Int(0, 1)) != null;
 
-        Tile tile = hasDesOnTop ? tilemapController.DesShadow : hasIndesOnTop && (tilePosition.y < 10 || (tilePosition.y == 10 && (gameManager.level < 3 || gameManager.level > 5))) ? tilemapController.IndesShadow : tilemapController.Background;
+        Tile tile = hasDesOnTop ? tilemapController.DesShadow : hasIndesOnTop && (tilePosition.y < 10 || (tilePosition.y == 10 && (DataManager.instance.level < 3 || DataManager.instance.level > 5))) ? tilemapController.IndesShadow : tilemapController.Background;
         tilemapController.backgroundTilemap.SetTile(tilePosition, tile);
     }
 

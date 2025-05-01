@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2807379852354685842}
   - component: {fileID: -2973584706873271437}
   - component: {fileID: 1387411484135983731}
+  - component: {fileID: 1219819904197379539}
   m_Layer: 12
   m_Name: One Up
   m_TagString: Untagged
@@ -145,3 +146,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: 8
   points: 500
+--- !u!95 &1219819904197379539
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4523291913515826298}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b6622ad0c158adc429a6c30fa47ab8bd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -35,11 +35,16 @@ public class ItemController : MonoBehaviour
             switch(itemName)
             {
                 case ItemName.BombUp:
-                    playerOneController.TotalBombs++;
+                    DataManager.instance.totalBombs++;
                     playerOneController.BombsRemaining++;
                     break;
+
                 case ItemName.FireUp:
-                    playerOneController.explosionRadius++;
+                    DataManager.instance.explosionRadius++;
+                    break;
+
+                case ItemName.SpeedUp:
+                    DataManager.instance.speed += 0.5f;
                     break;
 
                 case ItemName.BlockPass:
@@ -47,11 +52,11 @@ public class ItemController : MonoBehaviour
                     break;
 
                 case ItemName.OneUp:
-                    if (playerOneController.Lives < 9) playerOneController.Lives++;
+                    if (DataManager.instance.Lives < 9) DataManager.instance.Lives++;
                     break;
             }
 
-            playerOneController.Score += points;
+            DataManager.instance.Score += points;
 
             Destroy(gameObject);
         }
