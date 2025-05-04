@@ -2481,7 +2481,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -2593,6 +2593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3adb0c078168b43448a498a24b61342d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bigaronsHammer: {fileID: 8300000, guid: 5e51e502fc0f0484b848446b1712afef, type: 3}
   bombExplodes: {fileID: 8300000, guid: d673def6bcbe5fb4e989efe44db00f3f, type: 3}
   bombermanDies: {fileID: 8300000, guid: 9c7279cfe7da85247a7888df61c2deb8, type: 3}
   enemyDies: {fileID: 8300000, guid: 6d30baa145b293944b57ed6401f674b4, type: 3}
@@ -3067,7 +3068,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 8
   m_Sprite: {fileID: 21300000, guid: c91fdcaa4771d9f40ac486ecd11a0f43, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -7049,6 +7050,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc4ac1130dcd18d419087da0776e2ef6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boss: {fileID: 8300000, guid: 240ffd0b30154dc4d8f5ba23194de410, type: 3}
   levelStart: {fileID: 8300000, guid: 709236c87aeb7e7479bf27d8f31596aa, type: 3}
   stageOneIntro: {fileID: 8300000, guid: 1964cd11b3bd2ed4b815d1af4be93542, type: 3}
   stageOneLoop: {fileID: 8300000, guid: 073ac9f42fbd82545952c71c09ddaefb, type: 3}
@@ -7231,6 +7233,106 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1467117248}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1831276578
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1831276581}
+  - component: {fileID: 1831276580}
+  - component: {fileID: 1831276579}
+  m_Layer: 0
+  m_Name: Cover
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1831276579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831276578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faadc66e2586c1a459cf47bc4cc21777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  introSpeed: 0.5
+  flashSpeed: 90
+  exitSpeed: 15
+--- !u!212 &1831276580
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831276578}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 7
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1831276581
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831276578}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.0183, y: 6.4924, z: 0}
+  m_LocalScale: {x: 16.210989, y: 14.16179, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1840169150
 GameObject:
@@ -8508,8 +8610,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bombPrefab: {fileID: 7685291055953376858, guid: 81a47e4fd02ad3c4883f7f23fa39f39b, type: 3}
   explosionsParent: {fileID: 343596561}
-  backgroundTilemap: {fileID: 1403637025}
-  redLightsTilemap: {fileID: 320906109}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -8527,3 +8627,4 @@ SceneRoots:
   - {fileID: 1467117248}
   - {fileID: 1221173484}
   - {fileID: 92357646}
+  - {fileID: 1831276581}

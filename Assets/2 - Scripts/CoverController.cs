@@ -6,11 +6,10 @@ public class CoverController : MonoBehaviour
     ArrowController arrowController;
     SpriteRenderer spriteRenderer;
     TitleController titleController;
-    float fadeInAt;
+    float fadeInAt, fadeOutAt;
 
     public enum TransitionState { BlackFadeOut, WhiteFlashBegin, WhiteFlashEnd, BlackFadeIn, None }
     public TransitionState transitionState { get; set; } = TransitionState.None;
-    public bool titleMatched { get; set; }
     public float introSpeed, flashSpeed, exitSpeed;
 
     void Start()
@@ -21,6 +20,7 @@ public class CoverController : MonoBehaviour
 
         spriteRenderer.color = Color.black;
         fadeInAt = Time.time + 7.5f;
+        fadeOutAt = Time.time + 4;
     }
 
     void Update()
@@ -32,7 +32,14 @@ public class CoverController : MonoBehaviour
 
     private void SetTransitionState()
     {
-        if (spriteRenderer.color == Color.black && transitionState == TransitionState.None) transitionState = TransitionState.BlackFadeOut;
+        if (DataManager.instance.level < 8)
+        {
+            if (spriteRenderer.color == Color.black && transitionState == TransitionState.None) transitionState = TransitionState.BlackFadeOut;
+        }
+        else
+        {
+            if (Time.time > fadeOutAt) transitionState = TransitionState.BlackFadeOut;
+        }
 
         if (SceneManager.GetActiveScene().name == "Menu")
         {

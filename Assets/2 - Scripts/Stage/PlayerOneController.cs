@@ -10,6 +10,8 @@ public class PlayerOneController : MonoBehaviour
     SFXManager sfxManager;
     Vector2 walkInputs;
     bool canPlaceBomb = true;
+    bool disablingPlayerOne;
+    public float StartMovingAt { get; private set; }
 
     public Collider2D PlayerCollider { get; private set; }
     public PlayerOneMap InputActions { get; private set; }
@@ -17,17 +19,10 @@ public class PlayerOneController : MonoBehaviour
     public Vector3 StartPosition { get; private set; } = new(1, 11.3f);
     public bool Invincible { private get; set; }
     public bool Knockedout { get; set; }
-    //public int Lives { get; set; }
-    //public int Score { get; set; }
     public int BombsRemaining { get; set; }
-    // public int TotalBombs { get; set; } = 1;
 
     public GameObject bombPrefab;
     public GameObject explosionsParent;
-    public Tilemap backgroundTilemap;
-    public Tilemap redLightsTilemap;
-    // public float speed = 3f;
-    // public int explosionRadius = 1;
 
     private void Awake()
     {
@@ -46,6 +41,7 @@ public class PlayerOneController : MonoBehaviour
 
     private void Start()
     {
+        StartMovingAt = Time.time + 5;
         animator = GetComponent<Animator>();
 
         ChangeStartPosition();
@@ -69,7 +65,7 @@ public class PlayerOneController : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name != "World Map")
         {
-            walkInputs = InputActions.PlayerOne.Walk.ReadValue<Vector2>();
+            if (DataManager.instance.level < 8 || (DataManager.instance.level == 8 && Time.time > StartMovingAt)) walkInputs = InputActions.PlayerOne.Walk.ReadValue<Vector2>();
 
             Move();
             SetAnimationParameters();
@@ -106,7 +102,7 @@ public class PlayerOneController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ((collision.gameObject.layer == LayerMask.NameToLayer("Explosion") || collision.gameObject.layer == LayerMask.NameToLayer("Stone")) && !Invincible)
+        if ((collision.gameObject.layer == LayerMask.NameToLayer("Explosion") || collision.gameObject.layer == LayerMask.NameToLayer("Harmful")) && !Invincible)
         {
             StartCoroutine(DisablePlayerOne());
         }
@@ -114,20 +110,26 @@ public class PlayerOneController : MonoBehaviour
 
     public IEnumerator DisablePlayerOne(float delay = 0)
     {
-        yield return new WaitForSeconds(delay);
+        if (!disablingPlayerOne)
+        {
+            disablingPlayerOne = true;
 
-        sfxManager.PlayClip(sfxManager.bombermanDies);
+            yield return new WaitForSeconds(delay);
 
-        InputActions.Disable();
-        PlayerCollider.isTrigger = true;
-        transform.position = transform.position + new Vector3(0, 0.3f, 0);
-        animator.SetTrigger("knockout");
+            sfxManager.PlayClip(sfxManager.bombermanDies);
 
-        yield return new WaitForSeconds(1);
+            InputActions.Disable();
+            PlayerCollider.isTrigger = true;
+            transform.position = transform.position + new Vector3(0, 0.3f, 0);
+            animator.SetTrigger("knockout");
 
-        // Lives--;
-        Knockedout = true;
-        gameObject.SetActive(false);
+            yield return new WaitForSeconds(1);
+
+            Knockedout = true;
+            gameObject.SetActive(false);
+
+            disablingPlayerOne = false;
+        }
     }
 
     private void CheckBombPressed()

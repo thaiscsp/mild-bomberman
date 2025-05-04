@@ -8,12 +8,11 @@ public class LevelIntroManager : MonoBehaviour
     Vector3 levelDisplayMiddlePos = new(6.969f, 5.625f, 0);
     Vector3 levelDisplayFinalPos = new(19.22f, 5.625f, 0);
     Vector3 scenarioFinalPos = new(0.5f, 0.5f, 0);
+    float sceneStartTime;
 
     public Sprite[] levelDisplaySprites;
     public GameObject levelDisplay;
     public GameObject scenario;
-
-    float sceneStartTime;
 
     void Start()
     {
@@ -29,13 +28,16 @@ public class LevelIntroManager : MonoBehaviour
 
     public void SetTilemapsColor()
     {
-        tilemapController.backgroundTilemap.color = Color.black;
-        tilemapController.destructiblesTilemap.color = Color.black;
-        tilemapController.indestructiblesTilemap.color = Color.black;
+        if (DataManager.instance.level < 8)
+        {
+            tilemapController.backgroundTilemap.color = Color.black;
+            tilemapController.destructiblesTilemap.color = Color.black;
+            tilemapController.indestructiblesTilemap.color = Color.black;
 
-        if (tilemapController.townBorderTilemap.gameObject.activeSelf) tilemapController.townBorderTilemap.color = Color.black;
-        else if (tilemapController.villageBorderTilemap.gameObject.activeSelf) tilemapController.villageBorderTilemap.color = Color.black;
-        else if (tilemapController.castleBorderTilemap.gameObject.activeSelf) tilemapController.castleBorderTilemap.color = Color.black;
+            if (tilemapController.townBorderTilemap.gameObject.activeSelf) tilemapController.townBorderTilemap.color = Color.black;
+            else if (tilemapController.villageBorderTilemap.gameObject.activeSelf) tilemapController.villageBorderTilemap.color = Color.black;
+            else if (tilemapController.castleBorderTilemap.gameObject.activeSelf) tilemapController.castleBorderTilemap.color = Color.black;
+        }
     }
 
     public void ChangeLevelDisplaySprite()

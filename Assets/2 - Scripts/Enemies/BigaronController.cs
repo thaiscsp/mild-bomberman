@@ -5,13 +5,16 @@ using UnityEngine;
 public class BigaronController : MonoBehaviour
 {
     Animator animator;
+    BoxCollider2D hammerCollider;
     GameObject scenario;
     PlayerOneController playerOneController;
     SFXManager sfxManager;
     Vector3 target;
-    bool takingDamage, moving, hammering;
+    bool destroyingBigaron, takingDamage, moving, hammering;
     bool canMove = true;
+    float startMovingAt;
     int lives = 8;
+    int points = 10000;
     string lastChosenAxis;
 
     public GameObject bigStonePrefab;
@@ -19,7 +22,10 @@ public class BigaronController : MonoBehaviour
 
     void Start()
     {
+        startMovingAt = Time.time + 5;
+
         animator = GetComponent<Animator>();
+        hammerCollider = GetComponentInChildren<BoxCollider2D>();
         playerOneController = FindFirstObjectByType<PlayerOneController>();
         scenario = FindFirstObjectByType<TilemapController>().gameObject;
         sfxManager = FindFirstObjectByType<SFXManager>();
@@ -30,7 +36,7 @@ public class BigaronController : MonoBehaviour
         StartCoroutine(Move());
         StartCoroutine(Hammer());
         GoToTarget();
-        DestroyBigaron();
+        StartCoroutine(DestroyBigaron());
     }
 
     private IEnumerator Move()
@@ -61,7 +67,7 @@ public class BigaronController : MonoBehaviour
 
     private void GoToTarget()
     {
-        if (target != Vector3.zero && canMove)
+        if (Time.time > startMovingAt && target != Vector3.zero && canMove)
         {
             transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
@@ -83,17 +89,19 @@ public class BigaronController : MonoBehaviour
 
     private IEnumerator Hammer()
     {
-        if (!hammering)
+        if (Time.time > startMovingAt && !hammering)
         {
             hammering = true;
 
             yield return new WaitForSeconds(6); // Idle time before hammering
 
             animator.Play("Hammer");
+            hammerCollider.enabled = true;
             canMove = false;
             yield return new WaitForSeconds(2);
 
             animator.Play("Lift");
+            hammerCollider.enabled = false;
             yield return new WaitForSeconds(0.083f);
 
             animator.Play("Idle");
@@ -157,10 +165,16 @@ public class BigaronController : MonoBehaviour
         }
     }
 
-    private void DestroyBigaron()
+    private IEnumerator DestroyBigaron()
     {
-        if (lives == 0)
+        if (lives == 0 && !destroyingBigaron)
         {
+            destroyingBigaron = true;
+
+            animator.Play("Death");
+
+            yield return new WaitForSeconds(0.333f);
+
             Destroy(gameObject);
         }
     }

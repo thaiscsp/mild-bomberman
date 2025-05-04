@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     float timeLimit = 180f;
     bool countElapsedTime;
     bool timeLimitReached;
+    bool canActivateIFrame;
 
     private void Start()
     {
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
         CheckPlayerOneLives();
         SetStatsUIText();
         CheckTimeLimit();
+        EnableIFrame();
     }
 
     //private void SetInitialStats()
@@ -289,6 +291,22 @@ public class GameManager : MonoBehaviour
             DataManager.instance.level++;
             SceneManager.LoadScene("Stage");
         } 
+    }
+
+    // Ensures the player won't be flashing on the first few seconds of stage 1-8
+    private void EnableIFrame()
+    {
+        if (playerOneController.gameObject.activeSelf)
+        {
+            if (DataManager.instance.level == 8 && Time.time < playerOneController.StartMovingAt)
+            {
+                canActivateIFrame = false;
+            }
+            else
+            {
+                canActivateIFrame = true;
+            }
+        }
     }
 
 }
